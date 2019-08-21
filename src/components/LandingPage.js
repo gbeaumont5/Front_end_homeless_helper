@@ -6,7 +6,7 @@ class LandingPage extends Component {
     super(props);
   }
 
-  adminPage;
+  //   createNewMember()
 
   render() {
     return (
@@ -21,8 +21,7 @@ class LandingPage extends Component {
             dolor sequi incidunt nisi odio ipsum delectus quis eum quo cumque
             blanditiis possimus.
           </p>
-          <button onClick={() => this.adminPage()}>ADMIN</button>
-          <button>SHOW MEMBERS</button>
+          <button onClick={() => this.createNewMember()}>ADMIN</button>
         </div>
       </div>
     );
