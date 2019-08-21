@@ -6,22 +6,12 @@ class LandingPage extends Component {
     super(props);
   }
 
-  //   createNewMember()
-
   render() {
     return (
       <div>
         <h1>Good Tomatoes</h1>
-        <h3>What To Watch? We </h3>
-        <div>
-          <h4>Mission Statement</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
-            ipsam consectetur non, enim voluptatum repellendus porro doloremque,
-            dolor sequi incidunt nisi odio ipsum delectus quis eum quo cumque
-            blanditiis possimus.
-          </p>
-        </div>
+        <h3>What To Watch?</h3>
+        <div className='search-bar' />
       </div>
     );
   }
