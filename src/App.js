@@ -8,7 +8,7 @@ import NewMember from './components/NewMember';
 import NewDonor from './components/NewDonor';
 import Toggle from './components/toggle'
 
-
+require('dotenv').config()
 
 
 class App extends Component {
