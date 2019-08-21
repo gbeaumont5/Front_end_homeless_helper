@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class EditMember extends Component {
-<<<<<<< HEAD
   constructor(props) {
     super(props);
     this.state = {
@@ -18,23 +17,6 @@ class EditMember extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-=======
-    constructor(props) {
-        super(props)
-        this.state = {
-            name:'',
-            email: '',
-            bio: '',
-            memberPic: '',
-            medicalNotes: '',
-            skills: '',
-            ableToWork: true,
-            needs: ''
-        }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
->>>>>>> 33dbb5e2c98d45eab259616d16a4e96c26e4c2c4
 
   handleChange(event) {
     this.setState({
