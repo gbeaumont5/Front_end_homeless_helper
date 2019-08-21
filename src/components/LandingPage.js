@@ -11,8 +11,8 @@ class LandingPage extends Component {
   render() {
     return (
       <div>
-        <h1>Brighter Tomorrow</h1>
-        <h3>Helping people take charge of their lives</h3>
+        <h1>Good Tomatoes</h1>
+        <h3>What To Watch? We </h3>
         <div>
           <h4>Mission Statement</h4>
           <p>

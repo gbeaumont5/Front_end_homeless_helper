@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
@@ -7,11 +8,10 @@ import Login from './components/Login';
 import NewMember from './components/NewMember';
 import NewDonor from './components/NewDonor';
 import Toggle from './components/toggle';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 require('dotenv').config();
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -27,13 +27,13 @@ class App extends Component {
               <Link to='/NewMember'>Register</Link>
               <Link to='/About'>About</Link>
             </nav>
-            <Route path='/' exact component={Home} />
+            <Route path='/' exact component={LandingPage} />
             <Route path='/Login' component={Login} />
             <Route path='/NewMember' component={NewMember} />
             {/*<Route path='/About' component={About} /> */}
           </div>
         </Router>
-        <LandingPage />
+
         <Toggle />
       </div>
     );
