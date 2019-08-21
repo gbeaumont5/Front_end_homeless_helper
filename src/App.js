@@ -6,15 +6,23 @@ import Heading from './components/Heading';
 import LandingPage from './components/LandingPage';
 import NewMember from './components/NewMember';
 import NewDonor from './components/NewDonor';
+import Toggle from './components/toggle'
+
+
+
 
 class App extends Component {
   constructor(props) {
     super(props);
   }
+
+
   render() {
     return (
       <div className='App'>
         <LandingPage />
+        <Toggle />
+        
       </div>
     );
   }
