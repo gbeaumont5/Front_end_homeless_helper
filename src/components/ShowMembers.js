@@ -6,7 +6,7 @@ let baseURL = 'http://localhost:3003'
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003';
 } else {
-  baseURL = 'http://homeless_helper.surge.sh/';
+  baseURL = 'http://good_tomatoes.surge.sh/';
 }
 
 class showMembers extends Component {
