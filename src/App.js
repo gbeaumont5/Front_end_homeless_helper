@@ -6,11 +6,6 @@ import axios from 'axios';
 import LandingPage from './components/LandingPage';
 import Login from './components/Login';
 import NewMember from './components/NewMember';
-import NewDonor from './components/NewDonor';
-import SearchResults from './components/ShowSearchResults'
-
-
-
 import Toggle from './components/toggle';
 import showSearchResults from './components/ShowSearchResults';
 
@@ -39,7 +34,6 @@ class App extends React.Component {
           </div>
         </Router>
 
-        <SearchResults />
       </div>
     );
   }
