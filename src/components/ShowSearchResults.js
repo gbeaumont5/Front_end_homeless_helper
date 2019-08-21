@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+require('dotenv').config();
 
 let baseURL = 'http://localhost:3003'
+let API_URL = 'ttp://www.omdbapi.com/'
 
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003';
@@ -13,20 +15,21 @@ class showSearchResults extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        results: {},
+        results:[],
         search: ''
       }
     }
 
 
     componentDidMount() {
-        fetch(`http://www.omdbapi.com/?apikey=b01d6b33&t=batman`)
+        // fetch(`${API_URL}/?apikey=${dotenv}&t=batman`)
+        fetch(`http://www.omdbapi.com/?apikey=b01d6b33&s=batman`)
         .then(response => response.json())
         .then(data => 
           // console.log(data))
           {
           this.setState({
-            results: data
+            results: data.Search
           })
           console.log(this.state.results)
         })
@@ -38,14 +41,27 @@ class showSearchResults extends Component {
       render() {
           return(
               <div>
-                {this.state.results.Title}
-                  {/* {this.state.results.Search.map(result => {
-                    return(
-                      <div key={result.imdbID}>
-                      <h1>{result.Title}</h1>
+                <div class="row">
+                {this.state.results.map(movie => {
+                  return (
+                  <div class="col s12 m6 l4">
+                    <div class="card" key={movie.imdbID}>
+                      <div class="card-image">
+                        <img src={movie.Poster} alt={movie.Title} />
+                        
                       </div>
-                    )
-                  })} */}
+                      <div class="card-content">
+                        <h4 class="card-title">{movie.Title}</h4>
+                        <p>{movie.Type} release year: {movie.Year}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                )
+              })}
+                </div>
+              
+ 
               </div>
           )
       }
