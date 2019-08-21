@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ShowMembers from '../components/ShowMembers'
+import ShowSearchResults from './ShowSearchResults'
 
 class Toggle extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class Toggle extends Component {
             <div>
                 <button onClick={this.toggle}>Show Members</button>
                 {this.state.on && (
-                    <ShowMembers />
+                    <ShowSearchResults />
                 )}
             </div>
         )
