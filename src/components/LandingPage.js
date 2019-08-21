@@ -21,7 +21,6 @@ class LandingPage extends Component {
             dolor sequi incidunt nisi odio ipsum delectus quis eum quo cumque
             blanditiis possimus.
           </p>
-          <button onClick={() => this.adminPage()}>ADMIN</button>
         </div>
       </div>
     );
