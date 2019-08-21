@@ -18,13 +18,17 @@ class showSearchResults extends Component {
       }
     }
 
+
     componentDidMount() {
-        fetch(`http://www.omdbapi.com/?apikey=b01d6b33&s=batman`)
+        fetch(`http://www.omdbapi.com/?apikey=b01d6b33&t=batman`)
         .then(response => response.json())
-        .then(data => {
+        .then(data => 
+          // console.log(data))
+          {
           this.setState({
             results: data
           })
+          console.log(this.state.results)
         })
       }
         
@@ -34,7 +38,14 @@ class showSearchResults extends Component {
       render() {
           return(
               <div>
-                  {this.state.results.Title}
+                {this.state.results.Title}
+                  {/* {this.state.results.Search.map(result => {
+                    return(
+                      <div key={result.imdbID}>
+                      <h1>{result.Title}</h1>
+                      </div>
+                    )
+                  })} */}
               </div>
           )
       }
