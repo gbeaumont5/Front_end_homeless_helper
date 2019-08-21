@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import Heading from './components/Heading';
+import LandingPage from './components/LandingPage';
+import NewMember from './components/NewMember';
+import NewDonor from './components/NewDonor';
 
 class App extends Component {
   constructor(props) {
@@ -10,8 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <h1>Homeless Helper</h1>
-        <h3>Helping people take charge of their lives</h3>
+        <LandingPage />
       </div>
     );
   }
