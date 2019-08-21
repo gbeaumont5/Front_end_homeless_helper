@@ -4,14 +4,14 @@ import axios from 'axios';
 class EditMember extends Component {
     constructor(props) {
         super(props)
-        this.state {
-            name:''
-            email: ''
-            bio: ''
-            memberPic: ''
-            medicalNotes: ''
-            skills: ""
-            ableToWork: true
+        this.state = {
+            name:'',
+            email: '',
+            bio: '',
+            memberPic: '',
+            medicalNotes: '',
+            skills: '',
+            ableToWork: true,
             needs: ''
         }
         this.handleChange = this.handleChange.bind(this)
