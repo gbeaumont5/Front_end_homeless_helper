@@ -13,7 +13,18 @@ require('dotenv').config();
 
 class App extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
+    this.state = {
+      members: []
+    }
+  }
+
+  handleAddMember (member) {
+    const copyMembers = [...this.state.members, member]
+    this.setState({
+      members: copyMembers
+    })
+    console.log(members)
   }
 
   render() {
@@ -29,7 +40,7 @@ class App extends React.Component {
             </nav>
             <Route path='/' exact component={LandingPage} />
             <Route path='/Login' component={Login} />
-            <Route path='/NewMember' component={NewMember} />
+            <Route path="/NewMember" render={props => <NewMember handleAddMember = {this.handleAddMember} />} />
             {/*<Route path='/About' component={About} /> */}
           </div>
         </Router>
