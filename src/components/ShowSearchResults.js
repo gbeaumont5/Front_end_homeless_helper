@@ -15,53 +15,79 @@ class showSearchResults extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        results:[],
-        search: ''
+        results: {},
+        search: '',
+        loading: false
       }
+      this.handleChange = this.handleChange.bind(this)
+      this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    handleChange(event) {
+      this.setState({
+        search: event.target.value
+      })
+    }
+
+    handleSubmit(event) {
+      this.setState({
+        loading: true
+      })
+      fetch(`http://www.omdbapi.com/?apikey=b01d6b33&t=${this.state.search}`)
+      .then(response => response.json())
+      .then(data => 
+        // console.log(data))
+        {
+        this.setState({
+          results: data,
+          loading: false
+        })
+        console.log(this.state.results)
+      })
+      event.preventDefault();
     }
 
 
-    componentDidMount() {
-        // fetch(`${API_URL}/?apikey=${dotenv}&t=batman`)
-        fetch(`http://www.omdbapi.com/?apikey=b01d6b33&s=batman`)
-        .then(response => response.json())
-        .then(data => 
-          // console.log(data))
-          {
-          this.setState({
-            results: data.Search
-          })
-          console.log(this.state.results)
-        })
-      }
+
+
+    // componentDidMount() {
+    //     this.setState({
+    //       loading: true
+    //     })
+    //     fetch(`http://www.omdbapi.com/?apikey=b01d6b33&t=${this.state.search}`)
+    //     .then(response => response.json())
+    //     .then(data => 
+    //       // console.log(data))
+    //       {
+    //       this.setState({
+    //         results: data,
+    //         loading: false
+    //       })
+    //       console.log(this.state.results)
+    //     })
+    //   }
         
       
     
 
       render() {
+          let results = this.state.results.Title
+          const loadResults = this.state.loading ? "loading..." : results 
           return(
               <div>
-                <div class="row">
-                {this.state.results.map(movie => {
-                  return (
-                  <div class="col s12 m6 l4">
-                    <div class="card" key={movie.imdbID}>
-                      <div class="card-image">
-                        <img src={movie.Poster} alt={movie.Title} />
-                        
-                      </div>
-                      <div class="card-content">
-                        <h4 class="card-title">{movie.Title}</h4>
-                        <p>{movie.Type} release year: {movie.Year}</p>
-                      </div>
-                    </div>
-                  </div>
+                {/* <form onSubmit={this.handleSubmit}>
+                  <label>Search
+                    <input type="text" value={this.state.search} onChange={this.handleChange}/>
+                  </label>
+                  <input type="submit" value="Submit"/>
+                </form> */}
 
-                )
-              })}
-                </div>
-              
- 
+
+                <form onSubmit={this.handleSubmit}>
+                <input type="text" value={this.state.search} onChange={this.handleChange} placeholder="What Movie or Tv Show are you looking for?" class="center"/>
+                <input type="submit" value="ok" class="btn"/>
+                </form>
+                {loadResults}
               </div>
           )
       }
