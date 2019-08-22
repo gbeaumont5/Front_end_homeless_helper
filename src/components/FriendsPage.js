@@ -39,6 +39,7 @@ class FriendsPage extends Component {
                             </div>
                         )
                     })}
+
                 </div>
             </div>
         )
