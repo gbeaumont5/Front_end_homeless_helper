@@ -28,10 +28,10 @@ class App extends React.Component {
     this.handleAddMember = this.handleAddMember.bind(this)
   }
 
-  async getMembers () {
+  async getMembers() {
     const response = await axios(`${baseURL}/members`)
     console.log(response);
-    
+
     const data = response.data
     this.setState({
       members: data
@@ -39,7 +39,7 @@ class App extends React.Component {
     console.log(this.state.members);
   }
 
-  handleAddMember (member) {
+  handleAddMember(member) {
     const copyMembers = [...this.state.members, member]
     this.setState({
       members: copyMembers
@@ -53,14 +53,14 @@ class App extends React.Component {
         <Router className='nav'>
           <div className='container'>
             <nav>
-              <Link to='/'>Home</Link>
-              <Link to='/Login'>Login | My Account</Link>
-              <Link to='/NewMember'>Register</Link>
+              <Link to='/'>Home | </Link>
+              <Link to='/Login'>Login | My Account | </Link>
+              <Link to='/NewMember'>Register | </Link>
               <Link to='/About'>About</Link>
             </nav>
             <Route path='/' exact component={LandingPage} />
             <Route path='/Login' component={Login} />
-            <Route path="/NewMember" render={props => <NewMember handleAddMember = {this.handleAddMember} />} />
+            <Route path="/NewMember" render={props => <NewMember handleAddMember={this.handleAddMember} />} />
             {/*<Route path='/About' component={About} /> */}
           </div>
         </Router>
