@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import LandingPage from './components/LandingPage';
@@ -8,6 +7,14 @@ import Login from './components/Login';
 import NewMember from './components/NewMember';
 import Toggle from './components/toggle';
 import showSearchResults from './components/ShowSearchResults';
+
+let baseURL = process.env.REACT_APP_BASEURL
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003'
+} else {
+  baseURL = 'https://fathomless-sierra-68956.herokuapp.com'
+}
 
 require('dotenv').config();
 
@@ -17,6 +24,19 @@ class App extends React.Component {
     this.state = {
       members: []
     }
+    this.getMembers = this.getMembers.bind(this)
+    this.handleAddMember = this.handleAddMember.bind(this)
+  }
+
+  async getMembers () {
+    const response = await axios(`${baseURL}/members`)
+    console.log(response);
+    
+    const data = response.data
+    this.setState({
+      members: data
+    })
+    console.log(this.state.members);
   }
 
   handleAddMember (member) {
@@ -24,7 +44,7 @@ class App extends React.Component {
     this.setState({
       members: copyMembers
     })
-    console.log(members)
+    console.log(this.state.members)
   }
 
   render() {
