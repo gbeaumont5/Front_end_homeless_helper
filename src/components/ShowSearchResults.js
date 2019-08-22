@@ -14,38 +14,72 @@ class showSearchResults extends Component {
       super(props);
       this.state = {
         results: {},
-        search: ''
+        search: '',
+        loading: false
       }
+      this.handleChange = this.handleChange.bind(this)
+      this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    handleChange(event) {
+      this.setState({
+        search: event.target.value
+      })
+    }
+
+    handleSubmit(event) {
+      this.setState({
+        loading: true
+      })
+      fetch(`http://www.omdbapi.com/?apikey=b01d6b33&t=${this.state.search}`)
+      .then(response => response.json())
+      .then(data => 
+        // console.log(data))
+        {
+        this.setState({
+          results: data,
+          loading: false
+        })
+        console.log(this.state.results)
+      })
+      event.preventDefault();
     }
 
 
-    componentDidMount() {
-        fetch(`http://www.omdbapi.com/?apikey=b01d6b33&t=batman`)
-        .then(response => response.json())
-        .then(data => 
-          // console.log(data))
-          {
-          this.setState({
-            results: data
-          })
-          console.log(this.state.results)
-        })
-      }
+
+
+    // componentDidMount() {
+    //     this.setState({
+    //       loading: true
+    //     })
+    //     fetch(`http://www.omdbapi.com/?apikey=b01d6b33&t=${this.state.search}`)
+    //     .then(response => response.json())
+    //     .then(data => 
+    //       // console.log(data))
+    //       {
+    //       this.setState({
+    //         results: data,
+    //         loading: false
+    //       })
+    //       console.log(this.state.results)
+    //     })
+    //   }
         
       
     
 
       render() {
+          let results = this.state.results.Title
+          const loadResults = this.state.loading ? "loading..." : results 
           return(
               <div>
-                {this.state.results.Title}
-                  {/* {this.state.results.Search.map(result => {
-                    return(
-                      <div key={result.imdbID}>
-                      <h1>{result.Title}</h1>
-                      </div>
-                    )
-                  })} */}
+                <form onSubmit={this.handleSubmit}>
+                  <label>Search
+                    <input type="text" value={this.state.search} onChange={this.handleChange}/>
+                  </label>
+                  <input type="submit" value="Submit"/>
+                </form>
+                {loadResults}
               </div>
           )
       }
