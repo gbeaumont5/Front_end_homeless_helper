@@ -7,7 +7,7 @@ class ShowMovie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movie: null
+      movie: {}
     };
     console.log('this.props.imdbID: ', +this.state.imdbID);
   }
@@ -26,12 +26,13 @@ class ShowMovie extends Component {
     this.setState({
       movie: data
     });
+    console.log(this.state.movie.Title);
   }
 
   render() {
     return (
       <div>
-        <h2>On the Show Movie Page!!!</h2>
+        <h2>{this.state.movie.Title}</h2>
       </div>
     );
   }
