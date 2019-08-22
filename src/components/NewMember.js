@@ -8,12 +8,8 @@ class NewMember extends Component {
         this.state = {
             name:'',
             email: '',
-            bio: '',
-            memberPic: '',
-            medicalNotes: '',
-            skills: '',
-            ableToWork: true,
-            needs: ''
+            password: '',
+            picture: ''
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -23,56 +19,41 @@ class NewMember extends Component {
         this.setState({
             [event.currentTarget.name]: event.currentTarget.value,
             [event.currentTarget.email]: event.currentTarget.value,
-            [event.currentTarget.bio]: event.currentTarget.value,
-            [event.currentTarget.memberPic]: event.currentTarget.value,
-            [event.currentTarget.medicalNotes]: event.currentTarget.value,
-            [event.currentTarget.skills]: event.currentTarget.value,
-            [event.currentTarget.ableToWork]: event.currentTarget.value,
-            [event.currentTarget.needs]: event.currentTarget.value,
+            [event.currentTarget.password]: event.currentTarget.value,
+            [event.currentTarget.picture]: event.currentTarget.value,
         })
     }
 
     async handleSubmit (event) {
         event.preventDefault()
-        const response = await axios.post(`${baseURL}/holidays`, { 
+        const response = await axios.post(`${baseURL}/members`, { 
             name: this.state.name,
             email: this.state.email,
-            bio: this.state.bio,
-            memberPic: this.state.memberPic,
-            medicalNotes: this.state.medicalNotes,
-            skills: this.state.skills,
-            ableToWork: this.state.ableToWork,
-            needs: this.state.needs
+            password: this.state.password,
+            picure: this.state.picture
         })
         this.setState({ 
             name: '',
             email: '',
-            bio: '',
-            memberPic: '',
-            medicalNotes: '',
-            skills: "",
-            ableToWork: 'checked',
-            needs: ''
-
+            password: '',
+            picture: ''
     })
-        this.props.handleAddMember(response.data) //this is a prop coming from app.js
+        this.props.handleAddMember(response.data) //this is a prop coming from app.js, still need to create at App.js
     }
 
 
     render () {
         return (
           <form onSubmit={this.handleSubmit}>
+            <br/>
+            <br/>
             <label htmlFor="name"></label>
-            <input type="text" id="name" name="name" onChange={this.handleChange} value={this.state.name} placeholder="member name"/>
-            <input type="text" id="email" name="email" onChange={this.handleChange} value={this.state.email} placeholder="member email"/>
-            <input type="text" id="bio" name="bio" onChange={this.handleChange} value={this.state.bio} placeholder="member bio"/>
-            <input type="text" id="memberPic" name="memberPic" onChange={this.handleChange} value={this.state.memberPic} placeholder="member picture url"/>
-            <input type="text" id="medicalNotes" name="medicalNotes" onChange={this.handleChange} value={this.state.medicalNotes} placeholder="medical notes"/>
-            <input type="text" id="skills" name="skills" onChange={this.handleChange} value={this.state.skills} placeholder="skills"/>
-            <input type="text" id="needs" name="needs" onChange={this.handleChange} value={this.state.needs} placeholder="member name"/>
-            <input type="checkbox" id="needs" name="needs" onChange={this.handleChange} value={this.state.needs} placeholder="member name"/>
-
-            <input type="submit" value="Add Member"/>
+            <input type="text" id="name" name="name" onChange={this.handleChange} value={this.state.name} placeholder="your name"/>
+            <input type="text" id="email" name="email" onChange={this.handleChange} value={this.state.email} placeholder="your email"/>   
+            <input type="text" id="picture" name="picture" onChange={this.handleChange} value={this.state.picture} placeholder="a url for your picture"/>   
+            <input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.needs} placeholder="password"/>
+            <br/>
+            <input type="submit" class="btn" value="Add Member"/>
           </form>
         )
       }

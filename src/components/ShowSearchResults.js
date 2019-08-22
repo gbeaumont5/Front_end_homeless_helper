@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+require('dotenv').config();
 
 let baseURL = 'http://localhost:3003'
+let API_URL = 'ttp://www.omdbapi.com/'
 
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003';
