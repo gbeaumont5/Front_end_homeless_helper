@@ -90,7 +90,9 @@ class ShowSearchResults extends Component {
                       <a
                         onClick={() => {
                           this.props.handleClick(result.imdbID);
-                          this.props.history.push(`/movies/${result.imdbID}`);
+                          this.props.history.push(
+                            `/movies/selected/${result.imdbID}`
+                          );
                         }}
                       >
                         {' '}

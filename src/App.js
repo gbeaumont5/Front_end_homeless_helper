@@ -54,7 +54,7 @@ class App extends React.Component {
   handleClick(id) {
     // console.log(id);
     this.setState({
-      imdbID: this.id
+      imdbID: id
     });
     console.log(this.state.imdbID);
   }
@@ -83,11 +83,12 @@ class App extends React.Component {
             />
 
             <Route
-              path={`/Movies/${this.state.imdbID}`}
+              path={`/Movies/selected/${this.state.imdbID}`}
               render={props => (
                 <ShowMovie {...props} imdbID={this.state.imdbID} />
               )}
             />
+
             <Route
               path='/NewMember'
               render={props => (
