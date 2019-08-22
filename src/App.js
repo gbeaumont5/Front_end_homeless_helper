@@ -33,7 +33,6 @@ class App extends React.Component {
             {/*<Route path='/About' component={About} /> */}
           </div>
         </Router>
-
       </div>
     );
   }

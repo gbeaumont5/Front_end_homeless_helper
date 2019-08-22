@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import SearchResults from '../components/ShowSearchResults'
+import SearchResults from '../components/ShowSearchResults';
+import toggle from './toggle';
 
 class LandingPage extends Component {
   constructor(props) {
@@ -11,7 +12,16 @@ class LandingPage extends Component {
     return (
       <div>
         <h1>Good Tomatoes</h1>
-        
+
+        <form>
+          <input
+            type='text'
+            placeholder='What Movie or Tv Show are you looking for?'
+            class='center'
+          />
+          <input type='submit' value='ok' class='btn' />
+        </form>
+
         <SearchResults />
       </div>
     );
