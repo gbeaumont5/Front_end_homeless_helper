@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+const baseURL = 'http://localhost:3003';
+
 class FriendsPage extends Component {
     constructor(props) {
         super(props);
@@ -19,7 +21,7 @@ class FriendsPage extends Component {
         this.setState({
             friends: data
         })
-        
+
     }
 
 
@@ -29,7 +31,7 @@ class FriendsPage extends Component {
                 <h3>My Friends</h3>
                 <div class='row'>
                     {this.state.friends.map(friend => {
-                        return(
+                        return (
                             <div key={friend._id}>
                                 <h5>{friend.name}</h5>
                                 <img alt="profile picture" src="{friend.picture}"></img>

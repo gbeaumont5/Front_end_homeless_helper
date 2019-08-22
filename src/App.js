@@ -8,6 +8,7 @@ import NewMember from './components/NewMember';
 import Toggle from './components/toggle';
 import ShowSearchResults from './components/ShowSearchResults';
 import ShowMovie from './components/ShowMovie';
+import FriendsPage from './components/FriendsPage';
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -91,6 +92,12 @@ class App extends React.Component {
               path='/NewMember'
               render={props => (
                 <NewMember handleAddMember={this.handleAddMember} />
+              )}
+            />
+            <Route
+              path='/FriendsPage.js'
+              render={props => (
+                <FriendsPage friends={this.props.friends} />
               )}
             />
             {/*<Route path='/About' component={About} /> */}
