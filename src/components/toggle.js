@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import ShowMembers from '../components/ShowSearchResults';
 
@@ -8,6 +9,7 @@ class Toggle extends Component {
       on: false
     };
   }
+
 
   toggle = () => {
     this.setState({

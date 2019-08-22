@@ -6,45 +6,56 @@ import LandingPage from './components/LandingPage';
 import Login from './components/Login';
 import NewMember from './components/NewMember';
 import Toggle from './components/toggle';
-import showSearchResults from './components/ShowSearchResults';
+import ShowSearchResults from './components/ShowSearchResults';
+import ShowMovie from './components/ShowMovie';
 
-let baseURL = process.env.REACT_APP_BASEURL
+let baseURL = process.env.REACT_APP_BASEURL;
 
 if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3003'
+  baseURL = 'http://localhost:3003';
 } else {
-  baseURL = 'https://fathomless-sierra-68956.herokuapp.com'
+  baseURL = 'https://fathomless-sierra-68956.herokuapp.com';
 }
 
 require('dotenv').config();
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
+      imdbID: '',
+      movieSelected: false,
       members: []
-    }
-    this.getMembers = this.getMembers.bind(this)
-    this.handleAddMember = this.handleAddMember.bind(this)
+    };
+    this.handleClick = this.handleClick.bind(this);
+    this.getMembers = this.getMembers.bind(this);
+    this.handleAddMember = this.handleAddMember.bind(this);
   }
-
-  async getMembers () {
-    const response = await axios(`${baseURL}/members`)
+  async getMembers() {
+    const response = await axios(`${baseURL}/members`);
     console.log(response);
-    
-    const data = response.data
+
+    const data = response.data;
     this.setState({
       members: data
-    })
+    });
     console.log(this.state.members);
   }
 
-  handleAddMember (member) {
-    const copyMembers = [...this.state.members, member]
+  handleAddMember(member) {
+    const copyMembers = [...this.state.members, member];
     this.setState({
       members: copyMembers
-    })
-    console.log(this.state.members)
+    });
+    console.log(this.state.members);
+  }
+
+  handleClick(id) {
+    // console.log(id);
+    this.setState({
+      imdbID: this.id
+    });
+    console.log(this.state.imdbID);
   }
 
   render() {
@@ -53,18 +64,38 @@ class App extends React.Component {
         <Router className='nav'>
           <div className='container'>
             <nav>
-              <Link to='/'>Home</Link>
-              <Link to='/Login'>Login | My Account</Link>
-              <Link to='/NewMember'>Register</Link>
+              <Link to='/'>Home | </Link>
+              <Link to='/Login'>Login | My Account | </Link>
+              <Link to='/NewMember'>Register | </Link>
               <Link to='/About'>About</Link>
             </nav>
             <Route path='/' exact component={LandingPage} />
             <Route path='/Login' component={Login} />
-            <Route path="/NewMember" render={props => <NewMember handleAddMember = {this.handleAddMember} />} />
+            <Route path='/NewMember' component={NewMember} />
+
+            <Route
+              path='/Movies'
+              exact
+              render={props => (
+                <ShowSearchResults {...props} handleClick={this.handleClick} />
+              )}
+            />
+
+            <Route
+              path={`/Movies/${this.state.imdbID}`}
+              render={props => (
+                <ShowMovie {...props} imdbID={this.state.imdbID} />
+              )}
+            />
+            <Route
+              path='/NewMember'
+              render={props => (
+                <NewMember handleAddMember={this.handleAddMember} />
+              )}
+            />
             {/*<Route path='/About' component={About} /> */}
           </div>
         </Router>
-
       </div>
     );
   }
