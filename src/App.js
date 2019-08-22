@@ -7,13 +7,27 @@ import LandingPage from './components/LandingPage';
 import Login from './components/Login';
 import NewMember from './components/NewMember';
 import Toggle from './components/toggle';
-import showSearchResults from './components/ShowSearchResults';
+import ShowSearchResults from './components/ShowSearchResults';
+import ShowMovie from './components/ShowMovie';
 
 require('dotenv').config();
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      imdbID: '',
+      movieSelected: false
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(id) {
+    // console.log(id);
+    this.setState({
+      imdbID: this.id
+    });
+    console.log(this.state.imdbID);
   }
 
   render() {
@@ -30,6 +44,21 @@ class App extends React.Component {
             <Route path='/' exact component={LandingPage} />
             <Route path='/Login' component={Login} />
             <Route path='/NewMember' component={NewMember} />
+
+            <Route
+              path='/Movies'
+              exact
+              render={props => (
+                <ShowSearchResults {...props} handleClick={this.handleClick} />
+              )}
+            />
+
+            <Route
+              path={`/Movies/${this.state.imdbID}`}
+              render={props => (
+                <ShowMovie {...props} imdbID={this.state.imdbID} />
+              )}
+            />
             {/*<Route path='/About' component={About} /> */}
           </div>
         </Router>
