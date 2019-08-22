@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import SearchResults from '../components/ShowSearchResults';
+
 import toggle from './toggle';
 
 class LandingPage extends Component {
@@ -12,8 +12,6 @@ class LandingPage extends Component {
     return (
       <div>
         <h1>Good Tomatoes</h1>
-
-        <SearchResults />
       </div>
     );
   }
