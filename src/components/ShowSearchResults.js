@@ -75,11 +75,17 @@ class showSearchResults extends Component {
           const loadResults = this.state.loading ? "loading..." : results 
           return(
               <div>
-                <form onSubmit={this.handleSubmit}>
+                {/* <form onSubmit={this.handleSubmit}>
                   <label>Search
                     <input type="text" value={this.state.search} onChange={this.handleChange}/>
                   </label>
                   <input type="submit" value="Submit"/>
+                </form> */}
+
+
+                <form onSubmit={this.handleSubmit}>
+                <input type="text" value={this.state.search} onChange={this.handleChange} placeholder="What Movie or Tv Show are you looking for?" class="center"/>
+                <input type="submit" value="ok" class="btn"/>
                 </form>
                 {loadResults}
               </div>
