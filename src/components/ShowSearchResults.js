@@ -15,7 +15,7 @@ class showSearchResults extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        results: {},
+        results: [],
         search: '',
         loading: false
       }
@@ -33,16 +33,17 @@ class showSearchResults extends Component {
       this.setState({
         loading: true
       })
-      fetch(`http://www.omdbapi.com/?apikey=b01d6b33&t=${this.state.search}`)
+      fetch(`http://www.omdbapi.com/?apikey=b01d6b33&s=${this.state.search}`)
       .then(response => response.json())
       .then(data => 
         // console.log(data))
         {
         this.setState({
-          results: data,
+          results: data.Search,
           loading: false
         })
         console.log(this.state.results)
+        console.log()
       })
       event.preventDefault();
     }
@@ -71,23 +72,39 @@ class showSearchResults extends Component {
     
 
       render() {
-          let results = this.state.results.Title
-          const loadResults = this.state.loading ? "loading..." : results 
+         
           return(
               <div>
-                {/* <form onSubmit={this.handleSubmit}>
-                  <label>Search
-                    <input type="text" value={this.state.search} onChange={this.handleChange}/>
-                  </label>
-                  <input type="submit" value="Submit"/>
-                </form> */}
-
-
+                
                 <form onSubmit={this.handleSubmit}>
                 <input type="text" value={this.state.search} onChange={this.handleChange} placeholder="What Movie or Tv Show are you looking for?" class="center"/>
                 <input type="submit" value="ok" class="btn"/>
                 </form>
-                {loadResults}
+                { <div class="row">
+          {this.state.loading ? "loading..." : this.state.results.map(result => {
+            return(
+            
+              
+                <div class="col s12 m6 l4">
+                  <div class="card" key={result.imdbID}>
+                    <div class="card-image">
+                      <img src={result.Poster} alt={result.Title} />
+
+                  </div>
+                <div class="card-content">
+                  <h4 class="card-title">{result.Title}</h4>
+                  <p>{result.Type} release year: {result.Year}</p>
+                </div>
+              </div>
+            </div>
+            
+            
+            )
+          }
+
+          ) 
+        }
+        </div>}
               </div>
           )
       }
