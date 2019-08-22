@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import ShowMembers from '../components/ShowMembers'
+import ShowMembers from './ShowMembers'
 
 class Toggle extends Component {
     constructor(props) {
         super(props)
         this.state = {
-        on: false,
+            on: false,
+        }
     }
-}
 
     toggle = () => {
         this.setState({
