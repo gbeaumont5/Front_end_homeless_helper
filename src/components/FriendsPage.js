@@ -34,7 +34,7 @@ class FriendsPage extends Component {
                         return (
                             <div key={friend._id}>
                                 <h5>{friend.name}</h5>
-                                <img alt="profile picture" src="{friend.picture}"></img>
+                                <img alt="profile picture" src={friend.picture} />
 
                             </div>
                         )

@@ -68,7 +68,8 @@ class App extends React.Component {
               <Link to='/'>Home | </Link>
               <Link to='/Login'>Login | My Account | </Link>
               <Link to='/NewMember'>Register | </Link>
-              <Link to='/About'>About</Link>
+              <Link to='/About'>About | </Link>
+              <Link to='/Friends'>Friends</Link>
             </nav>
             <Route path='/' exact component={LandingPage} />
             <Route path='/Login' component={Login} />
@@ -96,7 +97,7 @@ class App extends React.Component {
               )}
             />
             <Route
-              path='/FriendsPage.js'
+              path='/Friends'
               render={props => (
                 <FriendsPage friends={this.props.friends} />
               )}
