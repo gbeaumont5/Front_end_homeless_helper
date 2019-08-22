@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+let baseURL = 'http://localhost:3003'
+
 class NewReview extends Component {
-    super(props)
-    state = {
-        createdByID: '',
-        imdbID: this.props.imdbID,
-        title: '',
-        rating: null,
-        reviewNotes: '',
+    constructor(props){
+        super(props);
+        this.state = {
+            createdByID: '',
+            imdbID: this.props.imdbID,
+            title: '',
+            rating: null,
+            reviewNotes: '',
+        }
     }
 
     handleChange(event) {
@@ -37,10 +41,10 @@ class NewReview extends Component {
             rating: null,
             reviewNotes: ''
         });
-        this.props.handleAddMember(response.data); //this is a prop coming from , still need to create at App.js
+        this.props.handleAddReview(response.data); //this is a prop coming from , still need to create at App.js
       }
 
-    render (
+    render () {
         return (
             <div>
             <form onSubmit={this.handleSubmit}>
@@ -50,32 +54,42 @@ class NewReview extends Component {
 
             <input
               type='text'
-              id='email'
-              name='email'
+              id='createdById'
+              name='createdById'
               onChange={this.handleChange}
-              value={this.state.email}
-              placeholder='your email'
+              value={this.state.createdById}
+              placeholder='createdById'
             />
             <input
               type='text'
-              id='picture'
-              name='picture'
+              id='title'
+              name='title'
               onChange={this.handleChange}
-              value={this.state.picture}
-              placeholder='a url for your picture'
+              value={this.state.title}
+              placeholder='Review Title'
             />
             <input
-              type='password'
-              id='password'
-              name='password'
+              type='number'
+              id='rating'
+              name='rating'
               onChange={this.handleChange}
-              value={this.state.needs}
-              placeholder='password'
+              value={this.state.rating}
+              placeholder='3'
             />
+            <input
+            type='textarea'
+            id='reviewNotes'
+            name='reviewNotes'
+            onChange={this.handleChange}
+            value={this.state.reviewNotes}
+            value="Write your review here"
+          />
             <br />
-            <input type='submit' class='btn' value='Add Member' />
+            <input type='submit' class='btn' value='Submit Review' />
           </form>
             </div>
         )
-    )
+    }
 }
+
+export default NewReview
