@@ -19,11 +19,12 @@ class UserMainPage extends Component {
             member: {},
             currentUser: {},
             userReviews: [],
-            friends: []
+            friends: [],
+            movie: {}
         }
     }
 
-    async getMembers() {
+    async getAllMembers() {
         const response = await axios(`${baseURL}/members`)
         const data = response.data
         this.setState({
@@ -36,8 +37,7 @@ class UserMainPage extends Component {
         const response = await axios(`${baseURL}/members/5d60038c51440c439607787b`)
         const data = response.data
         this.setState({
-            currentUser: data[0],
-            // friends: data[0][friends]
+            currentUser: data[0]
         })
         console.log('This is me:', this.state.currentUser)
         // console.log('those are my friends': this.state.friends);
@@ -53,12 +53,30 @@ class UserMainPage extends Component {
         console.log('and the user reviews array is:', this.state.userReviews);
     }
 
+    async getFriends () {
+        const response = await axios(`${baseURL}/members/5d60038c51440c439607787b`)
+        const data = response.data[0]
+        this.setState({
+            friends: data.friends
+        })
+        console.log('my friends are:', this.state.friends);
+        
+    }
+
+    // async getMovie(id){
+    //     console.log('sadasd');
+    //     const response = await axios(`http://www.omdbapi.com/?apikey=b01d6b33&i=${id}`);
+    //     this.setState({
+    //         movie: response.data
+    //     })
+    // }
 
 
     componentDidMount() {
         this.getCurUser()
-        this.getMembers()
+        this.getAllMembers()
         this.getUserReviews()
+        this.getFriends()
     }
 
     render() {
@@ -80,6 +98,8 @@ class UserMainPage extends Component {
                             </div>
                             <div class="card-action">
                                 <a href="#">Delete My Account</a>
+                                <br/>
+                                <a href="/Friends">See what my friends are saying</a>
                             </div>
                         </div>
                     </div>
@@ -98,6 +118,7 @@ class UserMainPage extends Component {
                         <hr />
                     </div>)     
                 })}
+              
             </div>
         )
     }
