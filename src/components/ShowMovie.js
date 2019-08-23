@@ -54,7 +54,7 @@ class ShowMovie extends Component {
     return (
       <div>
         <h2>{this.state.movie.Title}</h2>
-        <NewReview imdbID={this.state.imdbID} />
+        <NewReview imdbID={this.state.imdbID} handleAddReview={this.handleAddReview}/>
         <ShowReviews imdbID={this.props.imdbID} />
       </div>
     );

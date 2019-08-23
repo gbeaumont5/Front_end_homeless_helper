@@ -5,6 +5,20 @@ import toggle from './toggle';
 class UserMainPage extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            members: [],
+            member: {},
+            currentUserId: ''
+        }
+    }
+
+    async getMembers() {
+        const response = await axios(`${baseURL}/members`)
+        const data = response.data
+        this.setState({
+            friends: data
+        })
+
     }
 
     render() {
