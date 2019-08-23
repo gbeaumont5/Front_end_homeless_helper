@@ -5,7 +5,27 @@ import toggle from './toggle';
 class UserMainPage extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            members: [],
+            member: {},
+            currentUserId: this.props.currentUserId
+        }
     }
+
+    async getMembers() {
+        const response = await axios(`${baseURL}/members`)
+        const data = response.data
+        this.setState({
+            members: data
+        })
+
+    }
+
+    <Route
+    path='/User'
+    render={props => (
+      <UserMainPage {...props} />
+    )}
 
     render() {
         return (
