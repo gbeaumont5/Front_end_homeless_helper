@@ -36,13 +36,13 @@ class NewReview extends Component {
       reviewNotes: this.state.reviewNotes
     });
     this.setState({
-      createdByID: '',
       imdbID: this.props.imdbID,
       title: '',
-      rating: null,
       reviewNotes: ''
     });
-    this.props.handleAddReview(response.data); //this is a prop coming from , still need to create at App.js
+    this.props.handleAddReview(response.data); 
+    window.location.reload()
+    console.log(this.state.imdbID)
   }
 
   render() {
@@ -79,7 +79,6 @@ class NewReview extends Component {
           />
           <input
             type='textarea'
-            id='reviewNotes'
             name='reviewNotes'
             onChange={this.handleChange}
             defaultValue={this.state.reviewNotes}

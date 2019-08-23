@@ -27,7 +27,7 @@ class ShowMovie extends Component {
     this.setState({
       reviews: data
     });
-    console.log('getReviews is rendeding:', this.state.reviews);
+    console.log('getReviews is rendering:', this.state.reviews);
   }
 
   async getMovie() {
@@ -43,8 +43,8 @@ class ShowMovie extends Component {
     console.log(this.state.movie.Title);
   }
 
-  handleAddReview(review) {
-    const copyReviews = [...this.state.reviews, review];
+  handleAddReview(newReview) {
+    const copyReviews = [...this.state.reviews, newReview];
     this.setState({
       reviews: copyReviews
     });
@@ -129,10 +129,14 @@ class ShowMovie extends Component {
 
         <h2>{this.state.movie.Title}</h2>
 
+
         <NewReview
           imdbID={this.state.imdbID}
           handleAddReview={this.handleAddReview}
         />
+
+
+        <NewReview imdbID={this.props.imdbID} handleAddReview={this.handleAddReview}/>
 
         <ShowReviews imdbID={this.props.imdbID} />
       </div>
