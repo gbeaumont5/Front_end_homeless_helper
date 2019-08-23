@@ -49,13 +49,9 @@ class NewReview extends Component {
         return (
             <div>
             <form onSubmit={this.handleSubmit}>
-            <br />
-            <br />
-            <label htmlFor='name' />
 
             <input
               type='text'
-              id='createdById'
               name='createdById'
               onChange={this.handleChange}
               value={this.state.createdById}
@@ -63,7 +59,6 @@ class NewReview extends Component {
             />
             <input
               type='text'
-              id='title'
               name='title'
               onChange={this.handleChange}
               value={this.state.title}
@@ -71,7 +66,6 @@ class NewReview extends Component {
             />
             <input
               type='number'
-              id='rating'
               name='rating'
               onChange={this.handleChange}
               value={this.state.rating}
@@ -79,11 +73,10 @@ class NewReview extends Component {
             />
             <input
             type='textarea'
-            id='reviewNotes'
             name='reviewNotes'
             onChange={this.handleChange}
             value={this.state.reviewNotes}
-            value="Write your review here"
+            placeholder="Write your review here"
           />
             <br />
             <input type='submit' className='btn' value='Submit Review' />
