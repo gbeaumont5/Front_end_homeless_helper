@@ -9,14 +9,15 @@ class Reviews extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            friends: [],
-            friend: {}
+            reviews: [],
+
         }
-        this.getFriendReview = this.getFriendReview.bind(this)
+        // this.getFriendReview = this.getFriendReview.bind(this)
     }
 
     componentDidMount() {
         this.getReviews();
+
     }
 
     async getReviews() {
@@ -28,22 +29,41 @@ class Reviews extends Component {
 
     }
 
-    getFriendReview(review) {
-        console.log('Getting profile')
-        this.setState({
-            review: review
+    checkID() {
+        this.state.reviews.map(review => {
+            console.log(review._id)
         })
     }
+
+    // getFriendReview(review) {
+    //     console.log('Getting profile')
+    //     this.setState({
+    //         review: review
+    //     })
+    // }
 
 
     render() {
         return (
             <div>
-                <h2></h2>
-                <img alt="movie picture" src="" />
-                <h3>Movie Title</h3>
-                <p>This is the movie review text</p>
+                <h1>Reviews</h1>
+                {
+                    this.state.reviews.map(review => {
+                        if (review.createdByID == this.props.friend._id) {
+                            return (
+                                <div>
+                                    <h2></h2>
+                                    <img alt="movie picture" src="" />
+                                    <h3>Movie Title</h3>
+                                    <p>This is the movie review text</p>
+                                </div>
+                            )
+                        }
+                    })
+                }
             </div>
+
+
 
         )
     }

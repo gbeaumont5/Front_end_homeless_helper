@@ -38,7 +38,6 @@ class App extends React.Component {
     this.deleteMember = this.deleteMember.bind(this);
 
     this.logIn = this.logIn.bind(this);
-
   }
   async getMembers() {
     const response = await axios(`${baseURL}/members`);
@@ -51,8 +50,6 @@ class App extends React.Component {
     console.log(this.state.members);
   }
 
-
-
   handleAddMember(member) {
     const copyMembers = [...this.state.members, member];
     this.setState({
@@ -62,7 +59,7 @@ class App extends React.Component {
   }
 
   logIn() {
-    this.setState(prevState => ({isLoggedIn: !prevState.isLoggedIn}))
+    this.setState(prevState => ({ isLoggedIn: !prevState.isLoggedIn }));
   }
 
   handleClick(id) {
@@ -72,7 +69,6 @@ class App extends React.Component {
     });
     console.log(this.state.imdbID);
   }
-
 
   async deleteMember(id) {
     console.log('delete route hit');
@@ -85,7 +81,6 @@ class App extends React.Component {
     });
     window.location.reload();
   }
-
 
   render() {
     return (
@@ -101,11 +96,12 @@ class App extends React.Component {
             </nav>
             <Route path='/' exact component={LandingPage} />
 
-            <Route path='/Login' component={Login} />
-
-            <Route path='/Login' render= {props => (<Login {...props} logIn={this.logIn} component={Login}/>)}
-             />
-
+            <Route
+              path='/Login'
+              render={props => (
+                <Login {...props} logIn={this.logIn} component={Login} />
+              )}
+            />
 
             <Route
               path='/'
@@ -115,12 +111,7 @@ class App extends React.Component {
               )}
             />
 
-            <Route
-                path='/User'
-                render={props => (
-                  <UserMainPage {...props}/>
-                )}
-                  />
+            <Route path='/User' render={props => <UserMainPage {...props} />} />
 
             <Route
               path={`/Movies/selected/${this.state.imdbID}`}
