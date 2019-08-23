@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import Reviews from './Reviews';
 
 const baseURL = 'http://localhost:3003';
 
@@ -11,6 +12,7 @@ class FriendProfile extends Component {
       friends: []
     };
   }
+
   render() {
     return (
       <div className='row'>
