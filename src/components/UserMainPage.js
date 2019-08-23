@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import toggle from './toggle';
-import ShowFriends from './ShowFriends'
+
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -30,7 +29,6 @@ class UserMainPage extends Component {
         this.setState({
             members: data
         })
-
     }
 
     async getCurUser() {
@@ -44,40 +42,23 @@ class UserMainPage extends Component {
         
     }
 
-    async getUserReviews () {
-        const response = await axios(`${baseURL}/reviews/byUser/5d60038c51440c439607787b`)
-        const data = response.data
-        this.setState({
-            userReviews: data
-        })
-        console.log('and the user reviews array is:', this.state.userReviews);
+    async getUserReviews() {
+    const response = await axios(
+      `${baseURL}/reviews/byUser/5d60038c51440c439607787b`
+    );
+    const data = response.data;
+    this.setState({
+      userReviews: data
+    });
+    console.log('and the user reviews array is:', this.state.userReviews);
     }
 
-    async getFriends () {
-        const response = await axios(`${baseURL}/members/5d60038c51440c439607787b`)
-        const data = response.data[0]
-        this.setState({
-            friends: data.friends
-        })
-        console.log('my friends are:', this.state.friends);
-        
-    }
+  componentDidMount() {
+    this.getCurUser();
+    this.getAllMembers();
+    this.getUserReviews();
+  }
 
-    // async getMovie(id){
-    //     console.log('sadasd');
-    //     const response = await axios(`http://www.omdbapi.com/?apikey=b01d6b33&i=${id}`);
-    //     this.setState({
-    //         movie: response.data
-    //     })
-    // }
-
-
-    componentDidMount() {
-        this.getCurUser()
-        this.getAllMembers()
-        this.getUserReviews()
-        this.getFriends()
-    }
 
     render() {
         return (
@@ -118,10 +99,10 @@ class UserMainPage extends Component {
                         <hr />
                     </div>)     
                 })}
-              
             </div>
         )
     }
 }
+              
 
-export default UserMainPage
+export default UserMainPage;
