@@ -59,7 +59,11 @@ class App extends React.Component {
   }
 
   logIn(data) {
-    this.setState(prevState => ({ isLoggedIn: !prevState.isLoggedIn }));
+    console.log('yesss', data)
+    this.setState(prevState => ({ 
+      isLoggedIn: !prevState.isLoggedIn,
+      userID: data._id
+    }));
     
   }
 
