@@ -32,7 +32,54 @@ class ShowMovie extends Component {
   render() {
     return (
       <div>
-        <h2>{this.state.movie.Title}</h2>
+        <div className='row'>
+          <div className='col s12 m4'>
+            <div className='card'>
+              <div className='card-image'>
+                <img src={this.state.movie.Poster} />
+                <span className='card-title'>{this.state.movie.Title}</span>
+              </div>
+            </div>
+          </div>
+          <div className='col s12 m8'>
+            <div className='card'>
+              <div className='card horizontal'>
+                <span className='card-title center'>
+                  {this.state.movie.Title}
+                </span>
+              </div>
+              <div className='card-content'>
+                <p>{this.state.movie.Plot}</p>
+              </div>
+
+              <div className='card-action'>
+                <p>
+                  Year: {this.state.movie.Year} | Rated:{' '}
+                  {this.state.movie.Rated} | Runtime: {this.state.movie.Runtime}
+                </p>
+              </div>
+              <div className='card-action'>
+                <p>
+                  Genre: {this.state.movie.Genre} | imdbRating:{' '}
+                  {this.state.movie.imdbRating}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col s12 m4'>
+            <div class='card blue-grey darken-1'>
+              <div class='card-content white-text'>
+                <span class='card-title'>Director</span>
+                <p>{this.state.movie.Director}</p>
+              </div>
+              <div class='card-action'>
+                <p>Awards{this.state.movie.Awards}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

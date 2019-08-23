@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ShowSearchResults from './ShowSearchResults';
 
 import toggle from './toggle';
 

@@ -74,7 +74,7 @@ class App extends React.Component {
             <Route path='/NewMember' component={NewMember} />
 
             <Route
-              path='/Movies'
+              path='/'
               exact
               render={props => (
                 <ShowSearchResults {...props} handleClick={this.handleClick} />
