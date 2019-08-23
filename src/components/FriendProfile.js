@@ -6,28 +6,13 @@ import Reviews from './Reviews';
 const baseURL = 'http://localhost:3003';
 
 class FriendProfile extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        return (
-            <div className="row">
-                <div>
-                    <h2>{this.props.friend.name}</h2>
-                    <img alt="pic" src={this.props.friend.picture} />
-                </div>
-                <div>
-                    <Reviews friend={this.props.friend} />
-                </div>
-
-=======
   constructor(props) {
     super(props);
     this.state = {
       friends: []
     };
   }
+
   render() {
     return (
       <div className='row'>
@@ -36,7 +21,6 @@ class FriendProfile extends Component {
             <div className='card-image'>
               <img alt='pic' src={this.props.friend.picture} />
               <h2>{this.props.friend.name}</h2>
-
             </div>
           </div>
         </div>
