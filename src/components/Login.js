@@ -26,6 +26,7 @@ class Login extends Component {
     event.preventDefault();
     console.log(this.state.email);
     console.log(this.state.password)
+    console.log(req.body);
     try {
       console.log('before', this.state)
       const reqBody = {
@@ -37,6 +38,13 @@ class Login extends Component {
       console.log('get ok', response.data)
       if (response.data === 'Login working'){
         this.props.logIn();
+        
+        const user = await axios.get(`${baseURL}/email/`, );
+
+        let user = this.props.userID
+
+        
+
       }
 
       } catch (err) {

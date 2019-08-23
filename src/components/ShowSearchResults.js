@@ -44,7 +44,7 @@ class ShowSearchResults extends Component {
             loading: false
           });
           console.log(this.state.results);
-          console.log();
+          
         }
       );
     event.preventDefault();
