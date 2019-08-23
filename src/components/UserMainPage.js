@@ -8,7 +8,7 @@ class UserMainPage extends Component {
         this.state = {
             members: [],
             member: {},
-            currentUserId: ''
+            currentUserId: this.props.currentUserId
         }
     }
 
@@ -16,10 +16,16 @@ class UserMainPage extends Component {
         const response = await axios(`${baseURL}/members`)
         const data = response.data
         this.setState({
-            friends: data
+            members: data
         })
 
     }
+
+    <Route
+    path='/User'
+    render={props => (
+      <UserMainPage {...props} />
+    )}
 
     render() {
         return (
