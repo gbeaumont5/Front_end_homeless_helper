@@ -19,8 +19,7 @@ class UserMainPage extends Component {
       member: {},
       currentUser: {},
       userReviews: [],
-      userReview: {},
-      reviewPhoto: ''
+      friends: []
     };
   }
 
@@ -37,8 +36,10 @@ class UserMainPage extends Component {
     const data = response.data;
     this.setState({
       currentUser: data[0]
+      // friends: data[0][friends]
     });
-    console.log(this.state.currentUser);
+    console.log('This is me:', this.state.currentUser);
+    // console.log('those are my friends': this.state.friends);
   }
 
   async getUserReviews() {
@@ -71,9 +72,7 @@ class UserMainPage extends Component {
               <div class='card-content'>
                 <h5>{this.state.currentUser.name}</h5>
                 <h5>{this.state.currentUser.email}</h5>
-                <button className='btn' onClick={() => this.props.editMember()}>
-                  Edit
-                </button>
+                <button className='btn'>Edit</button>
               </div>
               <div class='card-action'>
                 <a href='#'>Delete My Account</a>
@@ -81,49 +80,27 @@ class UserMainPage extends Component {
             </div>
           </div>
         </div>
+
         <hr />
-        <h2>My Reviews:</h2>
-        // reviews and ratings
-        <div class='flex-container'>
-          <div class='reviewbox'>
-            <img src='' width='140px' height='120px' alt='' />
-            <p>review text goes here</p>
-            <div>ratings</div>
-          </div>
-        </div>
-        <hr />
-        <ShowFriends currentUser={this.state.currentUser} />
-        <div class='card-stacked'>
-          <div class='card-content'>
-            <p>
-              I am a very simple card. I am good at containing small bits of
-              information.
-            </p>
-          </div>
-          <div class='card-action'>
-            <a href='#'>This is a link</a>
-          </div>
-        </div>
-        <div class='flex-container'>
-          <div>
-            <img src='' width='100px' height='200px' alt='' />
-            <h2>Current User Name</h2>
-            <h2>current user email</h2>
-          </div>
-          <div>
-            <button>Button</button>
-          </div>
-        </div>
-        // reviews and ratings
-        <div class='flex-container'>
-          <div class='reviewbox'>
-            <img src='' width='140px' height='120px' alt='' />
-            <p>review text goes here</p>
-            <div>ratings</div>
-          </div>
-        </div>
-        <hr />
-        <ShowFriends currentUser={this.state.currentUser} />
+
+        <h4>My Reviews:</h4>
+
+        {this.state.userReviews.map(review => {
+          return (
+            <div>
+              <h6>
+                {review.title} | <span>{review.rating}</span>
+              </h6>
+              <blockquote>
+                {' '}
+                <em>A review by: </em>
+                {this.state.currentUser.name}
+              </blockquote>
+              <p>{review.reviewNotes}</p>
+              <hr />
+            </div>
+          );
+        })}
       </div>
     );
   }
