@@ -8,11 +8,12 @@ class NewReview extends Component {
         super(props);
         this.state = {
             createdByID: '',
-            imdbID: this.props.imdbID,
             title: '',
             rating: null,
             reviewNotes: '',
         }
+        this.handleChange=this.handleChange.bind(this)
+        this.handleSubmit=this.handleSubmit.bind(this)
     }
 
     handleChange(event) {
@@ -85,7 +86,7 @@ class NewReview extends Component {
             value="Write your review here"
           />
             <br />
-            <input type='submit' class='btn' value='Submit Review' />
+            <input type='submit' className='btn' value='Submit Review' />
           </form>
             </div>
         )

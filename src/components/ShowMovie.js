@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import NewReview from './NewReview'
+import ShowReviews from './ShowReview'
 
 let baseURL = 'http://www.omdbapi.com/?apikey=b01d6b33&i=';
 
@@ -11,6 +12,7 @@ class ShowMovie extends Component {
       movie: {},
       reviews: []
     };
+    this.handleAddReview=this.handleAddReview.bind(this)
     console.log('this.props.imdbID: ', +this.state.imdbID);
   }
 
@@ -24,6 +26,8 @@ class ShowMovie extends Component {
     this.setState({
       reviews: data
     })
+    console.log('getReviews is rendeding:', this.state.reviews);
+    
   }
 
   async getMovie() {
@@ -44,13 +48,14 @@ class ShowMovie extends Component {
     this.setState({
       reviews: copyReviews
     });
-    console.log(this.state.reviews);
+    console.log('handleAddReview added or not? Check it out:', this.state.reviews);
   }
   render() {
     return (
       <div>
         <h2>{this.state.movie.Title}</h2>
-        <NewReview imdbID={this.props.imdbID} />
+        <NewReview imdbID={this.state.imdbID} />
+        <ShowReviews imdbID={this.props.imdbID} />
       </div>
     );
   }
