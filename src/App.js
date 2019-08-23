@@ -73,7 +73,6 @@ class App extends React.Component {
             </nav>
             <Route path='/' exact component={LandingPage} />
             <Route path='/Login' component={Login} />
-            <Route path='/NewMember' component={NewMember} />
 
             <Route
               path='/Movies'
