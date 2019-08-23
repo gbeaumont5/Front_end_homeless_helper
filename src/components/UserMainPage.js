@@ -20,8 +20,7 @@ class UserMainPage extends Component {
             member: {},
             currentUser: {},
             userReviews: [],
-            userReview: {},
-            reviewPhoto: ''
+            friends: []
         }
     }
 
@@ -38,9 +37,12 @@ class UserMainPage extends Component {
         const response = await axios(`${baseURL}/members/5d60038c51440c439607787b`)
         const data = response.data
         this.setState({
-            currentUser: data[0]
+            currentUser: data[0],
+            // friends: data[0][friends]
         })
-        console.log(this.state.currentUser)
+        console.log('This is me:', this.state.currentUser)
+        // console.log('those are my friends': this.state.friends);
+        
     }
 
     async getUserReviews () {
@@ -51,6 +53,8 @@ class UserMainPage extends Component {
         })
         console.log('and the user reviews array is:', this.state.userReviews);
     }
+
+
 
     componentDidMount() {
         this.getCurUser()
@@ -84,7 +88,19 @@ class UserMainPage extends Component {
 
                 <hr />
                 
-                <h2>My Reviews:</h2>
+                <h4>My Reviews:</h4>
+                <div>
+                {this.state.userReviews.map(review => {
+                    return (
+                    <div>
+                    <h6>{review.title} | <span>{review.rating}</span></h6>
+                    <blockquote> <em>A review by: </em>{this.state.currentUser.name}</blockquote>
+                    <p>{review.reviewNotes}</p>
+                    <hr />
+                    </div>)
+                        
+                })}
+                </div>
 
 
                         
@@ -92,16 +108,7 @@ class UserMainPage extends Component {
 
 
 
-                // reviews and ratings
-                <div class="flex-container">
-
-                    <div class="reviewbox">
-                        <img src="" width="140px" height="120px" alt="" />
-                        <p>review text goes here</p>
-                        <div>ratings</div>
-                    </div>
-
-                </div>
+                
 
 
                 <hr />
