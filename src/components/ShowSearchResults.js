@@ -21,6 +21,7 @@ class ShowSearchResults extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.addDefaultSrc = this.addDefaultSrc.bind(this);
   }
 
   handleChange(event) {
@@ -50,6 +51,10 @@ class ShowSearchResults extends Component {
     event.preventDefault();
   }
 
+  addDefaultSrc(event) {
+    event.target.src =
+      'https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=945&q=80';
+  }
   // componentDidMount() {
   //     this.setState({
   //       loading: true
@@ -98,9 +103,13 @@ class ShowSearchResults extends Component {
                         {' '}
                         <div className='card'>
                           <div className='card-image'>
-                            <img src={result.Poster} alt={result.Title} />
+                            <img
+                              src={result.Poster}
+                              alt={result.Title}
+                              onError={this.addDefaultSrc}
+                            />
                           </div>
-                          <div className='card-content'>
+                          <div className='card-content center-align'>
                             <h4 className='card-title'>{result.Title}</h4>
                             <p>
                               {result.Type} release year: {result.Year}
