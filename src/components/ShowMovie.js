@@ -118,7 +118,15 @@ class ShowMovie extends Component {
         </div>
 
         <h2>{this.state.movie.Title}</h2>
+<<<<<<< HEAD
         <NewReview imdbID={this.props.imdbID} handleAddReview={this.handleAddReview}/>
+=======
+
+        <NewReview imdbID={this.state.imdbID} />
+
+        <NewReview imdbID={this.state.imdbID} handleAddReview={this.handleAddReview}/>
+
+>>>>>>> 567993a70019b585e4561a34f9b48377640d9af6
         <ShowReviews imdbID={this.props.imdbID} />
       </div>
     );

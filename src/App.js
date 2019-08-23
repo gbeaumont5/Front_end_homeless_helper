@@ -27,11 +27,18 @@ class App extends React.Component {
     this.state = {
       imdbID: '',
       movieSelected: false,
-      members: []
+      members: [],
+      isLoggedIn: false
+
     };
     this.handleClick = this.handleClick.bind(this);
     this.getMembers = this.getMembers.bind(this);
     this.handleAddMember = this.handleAddMember.bind(this);
+
+    this.deleteMember = this.deleteMember.bind(this);
+
+    this.logIn = this.logIn.bind(this);
+
   }
   async getMembers() {
     const response = await axios(`${baseURL}/members`);
@@ -44,12 +51,18 @@ class App extends React.Component {
     console.log(this.state.members);
   }
 
+
+
   handleAddMember(member) {
     const copyMembers = [...this.state.members, member];
     this.setState({
       members: copyMembers
     });
     console.log(this.state.members);
+  }
+
+  logIn() {
+    this.setState(prevState => ({isLoggedIn: !prevState.isLoggedIn}))
   }
 
   handleClick(id) {
@@ -59,6 +72,20 @@ class App extends React.Component {
     });
     console.log(this.state.imdbID);
   }
+
+
+  async deleteMember(id) {
+    console.log('delete route hit');
+    await axios.delete(`${baseURL}/members/${id}`);
+    const filteredMembers = this.state.members.filter(member => {
+      return member._id !== id;
+    });
+    this.setState({
+      members: filteredMembers
+    });
+    window.location.reload();
+  }
+
 
   render() {
     return (
@@ -73,7 +100,12 @@ class App extends React.Component {
               <Link to='/Friends'>Friends</Link>
             </nav>
             <Route path='/' exact component={LandingPage} />
+
             <Route path='/Login' component={Login} />
+
+            <Route path='/Login' render= {props => (<Login {...props} logIn={this.logIn} component={Login}/>)}
+             />
+
 
             <Route
               path='/'
@@ -82,6 +114,13 @@ class App extends React.Component {
                 <ShowSearchResults {...props} handleClick={this.handleClick} />
               )}
             />
+
+            <Route
+                path='/User'
+                render={props => (
+                  <UserMainPage {...props}/>
+                )}
+                  />
 
             <Route
               path={`/Movies/selected/${this.state.imdbID}`}
@@ -99,7 +138,10 @@ class App extends React.Component {
             <Route
               path='/Friends'
               render={props => (
-                <FriendsPage friends={this.props.friends} />
+                <FriendsPage
+                  friends={this.props.friends}
+                  deleteMember={this.deleteMember}
+                />
               )}
             />
             <Route
