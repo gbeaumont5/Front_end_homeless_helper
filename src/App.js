@@ -31,6 +31,7 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.getMembers = this.getMembers.bind(this);
     this.handleAddMember = this.handleAddMember.bind(this);
+    this.deleteMember = this.deleteMember.bind(this);
   }
   async getMembers() {
     const response = await axios(`${baseURL}/members`);
@@ -57,6 +58,18 @@ class App extends React.Component {
       imdbID: id
     });
     console.log(this.state.imdbID);
+  }
+
+  async deleteMember(id) {
+    console.log('delete route hit');
+    await axios.delete(`${baseURL}/members/${id}`);
+    const filteredMembers = this.state.members.filter(member => {
+      return member._id !== id;
+    });
+    this.setState({
+      members: filteredMembers
+    });
+    window.location.reload();
   }
 
   render() {
@@ -98,7 +111,10 @@ class App extends React.Component {
             <Route
               path='/Friends'
               render={props => (
-                <FriendsPage friends={this.props.friends} />
+                <FriendsPage
+                  friends={this.props.friends}
+                  deleteMember={this.deleteMember}
+                />
               )}
             />
             {/*<Route path='/About' component={About} /> */}
