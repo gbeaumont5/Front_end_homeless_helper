@@ -58,8 +58,9 @@ class App extends React.Component {
     console.log(this.state.members);
   }
 
-  logIn() {
+  logIn(data) {
     this.setState(prevState => ({ isLoggedIn: !prevState.isLoggedIn }));
+    
   }
 
   handleClick(id) {
