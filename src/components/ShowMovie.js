@@ -14,6 +14,7 @@ class ShowMovie extends Component {
     };
     this.handleAddReview = this.handleAddReview.bind(this);
     console.log('this.props.imdbID: ', +this.state.imdbID);
+    this.addDefaultSrc = this.addDefaultSrc.bind(this);
   }
 
   componentDidMount() {
@@ -52,6 +53,12 @@ class ShowMovie extends Component {
       this.state.reviews
     );
   }
+
+  addDefaultSrc(event) {
+    event.target.src =
+      'https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=945&q=80';
+  }
+
   render() {
     return (
       <div>
@@ -59,7 +66,10 @@ class ShowMovie extends Component {
           <div className='col s12 m4'>
             <div className='card'>
               <div className='card-image'>
-                <img src={this.state.movie.Poster} />
+                <img
+                  src={this.state.movie.Poster}
+                  onError={this.addDefaultSrc}
+                />
                 <span className='card-title'>{this.state.movie.Title}</span>
               </div>
             </div>
@@ -119,9 +129,10 @@ class ShowMovie extends Component {
 
         <h2>{this.state.movie.Title}</h2>
 
-        <NewReview imdbID={this.state.imdbID} />
-
-        <NewReview imdbID={this.state.imdbID} handleAddReview={this.handleAddReview}/>
+        <NewReview
+          imdbID={this.state.imdbID}
+          handleAddReview={this.handleAddReview}
+        />
 
         <ShowReviews imdbID={this.props.imdbID} />
       </div>

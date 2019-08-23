@@ -48,7 +48,7 @@ class NewReview extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className='input-field'>
           <br />
           <br />
           <label htmlFor='name' />
