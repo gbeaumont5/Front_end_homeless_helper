@@ -97,8 +97,21 @@ class ShowMovie extends Component {
                 <span class='card-title'>Director</span>
                 <p>{this.state.movie.Director}</p>
               </div>
-              <div class='card-action'>
-                <p>Awards{this.state.movie.Awards}</p>
+            </div>
+          </div>
+          <div class='col s12 m4'>
+            <div class='card blue-grey darken-1'>
+              <div class='card-content white-text'>
+                <span class='card-title'>Actors</span>
+                <p>{this.state.movie.Actors}</p>
+              </div>
+            </div>
+          </div>
+          <div class='col s12 m4'>
+            <div class='card blue-grey darken-1'>
+              <div class='card-content white-text'>
+                <span class='card-title'>Awards</span>
+                <p>{this.state.movie.Awards}</p>
               </div>
             </div>
           </div>
