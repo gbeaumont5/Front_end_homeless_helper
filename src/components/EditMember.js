@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+let baseURL = 'http://localhost:3003';
+
 class EditMember extends Component {
   constructor(props) {
     super(props);
@@ -8,24 +10,24 @@ class EditMember extends Component {
       name: '',
       email: '',
       password: '',
-      picture: '',
+      picture: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange (event) {
+  handleChange(event) {
     this.setState({
-        [event.currentTarget.name]: event.currentTarget.value,
-        [event.currentTarget.email]: event.currentTarget.value,
-        [event.currentTarget.password]: event.currentTarget.value,
-        [event.currentTarget.picture]: event.currentTarget.value,
-    })
-}
+      [event.currentTarget.name]: event.currentTarget.value,
+      [event.currentTarget.email]: event.currentTarget.value,
+      [event.currentTarget.password]: event.currentTarget.value,
+      [event.currentTarget.picture]: event.currentTarget.value
+    });
+  }
 
   async handleSubmit(event) {
     event.preventDefault();
-    const response = await axios.post(`${baseURL}/holidays`, {
+    const response = await axios.post(`${baseURL}/members`, {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
