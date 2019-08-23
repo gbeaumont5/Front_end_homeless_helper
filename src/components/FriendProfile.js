@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import Reviews from './Reviews';
 
 const baseURL = 'http://localhost:3003';
 
 class FriendProfile extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            friends: [],
-
-        }
     }
     render() {
         return (
@@ -20,7 +17,7 @@ class FriendProfile extends Component {
                     <img alt="pic" src={this.props.friend.picture} />
                 </div>
                 <div>
-
+                    <Reviews friend={this.props.friend} />
                 </div>
 
             </div>
