@@ -1,8 +1,7 @@
-
 import React, { Component } from 'react';
 import axios from 'axios';
 import toggle from './toggle';
-import ShowFriends from './ShowFriends';
+import ShowFriends from './ShowFriends'
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -89,68 +88,19 @@ class UserMainPage extends Component {
                 <hr />
                 
                 <h4>My Reviews:</h4>
-                <div>
+                
                 {this.state.userReviews.map(review => {
                     return (
                     <div>
-                    <h6>{review.title} | <span>{review.rating}</span></h6>
-                    <blockquote> <em>A review by: </em>{this.state.currentUser.name}</blockquote>
-                    <p>{review.reviewNotes}</p>
-                    <hr />
-                    </div>)
-                        
+                        <h6>{review.title} | <span>{review.rating}</span></h6>
+                        <blockquote> <em>A review by: </em>{this.state.currentUser.name}</blockquote>
+                        <p>{review.reviewNotes}</p>
+                        <hr />
+                    </div>)     
                 })}
-                </div>
-
-
-                        
-    
-
-
-
-                
-
-
-                <hr />
-                <ShowFriends currentUser={this.state.currentUser} />
-
             </div>
-            <div class='card-stacked'>
-              <div class='card-content'>
-                <p>
-                  I am a very simple card. I am good at containing small bits of
-                  information.
-                </p>
-              </div>
-              <div class='card-action'>
-                <a href='#'>This is a link</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class='flex-container'>
-          <div>
-            <img src='' width='100px' height='200px' alt='' />
-            <h2>Current User Name</h2>
-            <h2>current user email</h2>
-          </div>
-          <div>
-            <button>Button</button>
-          </div>
-        </div>
-        // reviews and ratings
-        <div class='flex-container'>
-          <div class='reviewbox'>
-            <img src='' width='140px' height='120px' alt='' />
-            <p>review text goes here</p>
-            <div>ratings</div>
-          </div>
-        </div>
-        <hr />
-        <ShowFriends currentUser={this.state.currentUser} />
-      </div>
-    );
-  }
+        )
+    }
 }
 
-export default UserMainPage;
+export default UserMainPage
