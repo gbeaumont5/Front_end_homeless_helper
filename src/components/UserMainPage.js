@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import toggle from './toggle';
-import ShowFriends from './ShowFriends'
+import ShowFriends from './ShowFriends';
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -12,95 +12,98 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 class UserMainPage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            members: [],
-            member: {},
-            currentUser: {},
-            userReviews: [],
-            friends: []
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      members: [],
+      member: {},
+      currentUser: {},
+      userReviews: [],
+      friends: []
+    };
+  }
 
-    async getMembers() {
-        const response = await axios(`${baseURL}/members`)
-        const data = response.data
-        this.setState({
-            members: data
-        })
+  async getMembers() {
+    const response = await axios(`${baseURL}/members`);
+    const data = response.data;
+    this.setState({
+      members: data
+    });
+  }
 
-    }
+  async getCurUser() {
+    const response = await axios(`${baseURL}/members/5d60038c51440c439607787b`);
+    const data = response.data;
+    this.setState({
+      currentUser: data[0]
+      // friends: data[0][friends]
+    });
+    console.log('This is me:', this.state.currentUser);
+    // console.log('those are my friends': this.state.friends);
+  }
 
-    async getCurUser() {
-        const response = await axios(`${baseURL}/members/5d60038c51440c439607787b`)
-        const data = response.data
-        this.setState({
-            currentUser: data[0],
-            // friends: data[0][friends]
-        })
-        console.log('This is me:', this.state.currentUser)
-        // console.log('those are my friends': this.state.friends);
-        
-    }
+  async getUserReviews() {
+    const response = await axios(
+      `${baseURL}/reviews/byUser/5d60038c51440c439607787b`
+    );
+    const data = response.data;
+    this.setState({
+      userReviews: data
+    });
+    console.log('and the user reviews array is:', this.state.userReviews);
+  }
 
-    async getUserReviews () {
-        const response = await axios(`${baseURL}/reviews/byUser/5d60038c51440c439607787b`)
-        const data = response.data
-        this.setState({
-            userReviews: data
-        })
-        console.log('and the user reviews array is:', this.state.userReviews);
-    }
+  componentDidMount() {
+    this.getCurUser();
+    this.getMembers();
+    this.getUserReviews();
+  }
 
-
-
-    componentDidMount() {
-        this.getCurUser()
-        this.getMembers()
-        this.getUserReviews()
-    }
-
-    render() {
-        return (
-
-            <div class="content-wrapper">
-
-                <div class="col s12 m7">
-                    <h2 class="header">Welcome Back!</h2>
-                    <div class="card horizontal">
-                        <div class="card-image">
-                            <img src={this.state.currentUser.picture}/>
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <h5>{this.state.currentUser.name}</h5>
-                                <h5>{this.state.currentUser.email}</h5>
-                                <button className="btn">Edit</button>
-                            </div>
-                            <div class="card-action">
-                                <a href="#">Delete My Account</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <hr />
-                
-                <h4>My Reviews:</h4>
-                
-                {this.state.userReviews.map(review => {
-                    return (
-                    <div>
-                        <h6>{review.title} | <span>{review.rating}</span></h6>
-                        <blockquote> <em>A review by: </em>{this.state.currentUser.name}</blockquote>
-                        <p>{review.reviewNotes}</p>
-                        <hr />
-                    </div>)     
-                })}
+  render() {
+    return (
+      <div class='content-wrapper'>
+        <div class='col s12 m7'>
+          <h2 class='header'>Welcome Back!</h2>
+          <div class='card horizontal'>
+            <div class='card-image'>
+              <img src={this.state.currentUser.picture} />
             </div>
-        )
-    }
+            <div class='card-stacked'>
+              <div class='card-content'>
+                <h5>{this.state.currentUser.name}</h5>
+                <h5>{this.state.currentUser.email}</h5>
+                <button className='btn'>Edit</button>
+              </div>
+              <div class='card-action'>
+                <a href='#'>Delete My Account</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <h4>My Reviews:</h4>
+
+        {this.state.userReviews.map(review => {
+          return (
+            <div>
+              <h6>
+                {review.title} | <span>{review.rating}</span>
+              </h6>
+              <blockquote>
+                {' '}
+                <em>A review by: </em>
+                {this.state.currentUser.name}
+              </blockquote>
+              <p>{review.reviewNotes}</p>
+              <hr />
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
 }
 
-export default UserMainPage
+export default UserMainPage;
