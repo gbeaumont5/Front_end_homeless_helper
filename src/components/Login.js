@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+let baseURL = 'http://localhost:3003';
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -14,19 +16,37 @@ class Login extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.currentTarget.id]: event.currentTarget.value
+      [event.currentTarget.id]: event.currentTarget.value,
+
     });
-    // console.log('handle change');
-    // console.log(event.currentTarget.value);
+   
   }
 
   async handleSubmit(event) {
     event.preventDefault();
     console.log(this.state.email);
-    //Not sure where to put this ter
+    console.log(this.state.password)
+    try {
+      console.log('before', this.state)
+      const reqBody = {
+        email: this.state.email,
+        password: this.state.password
+      };
+      const response = await axios.post(`${baseURL}/users/login`, reqBody);
 
-    // this.setState({email: '', password: ''})
-  }
+      console.log('get ok', response.data)
+      if (response.data === 'Login working'){
+        this.props.logIn();
+      }
+
+      } catch (err) {
+        console.log('login error')
+      } 
+    }
+  
+    
+  
+
 
   render() {
     return (
@@ -45,9 +65,9 @@ class Login extends Component {
             <label htmlFor='password' />
             <input
               type='password'
-              id='username'
+              id='password'
               onChange={this.handleChange}
-              value={this.state.password}
+              defaultValue={this.state.password}
               placeholder='password'
             />
             <input type='submit' value='LOGIN' className='btn' />
