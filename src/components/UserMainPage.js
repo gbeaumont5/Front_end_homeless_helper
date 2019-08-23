@@ -17,7 +17,7 @@ class UserMainPage extends Component {
         this.state = {
             members: [],
             member: {},
-            currentUser: this.props.currentUser
+            currentUser: {}
         }
     }
 
@@ -38,6 +38,11 @@ class UserMainPage extends Component {
         })
     }
 
+    componentDidMount() {
+        this.getCurUser()
+        this.getMembers()
+    }
+
     render() {
         return (
 
@@ -47,7 +52,7 @@ class UserMainPage extends Component {
                     <h2 class="header">Horizontal Card</h2>
                     <div class="card horizontal">
                         <div class="card-image">
-                            <img src="https://lorempixel.com/100/190/nature/6" />
+                            <img src={this.state.currentUser.picture} />
                         </div>
                         <div class="card-stacked">
                             <div class="card-content">
