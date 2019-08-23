@@ -35,11 +35,17 @@ class Login extends Component {
       };
       const response = await axios.post(`${baseURL}/users/login`, reqBody);
 
-      console.log('get ok', response.data)
-      if (response.data === 'Login working'){
-        const user = await axios.get(`${baseURL}/members/email`, );
-        console.log(user);
-        this.props.logIn(user._id);
+      // const foundUser = response.data;
+
+      console.log('get ok', response)
+      console.log('response data', response.data)
+      if (response.data.email === this.state.email){
+        console.log('login working')
+        
+        // const response = await axios.get(`${baseURL}/users/email/:id`);
+        // const data = response.data
+        // console.log(data);
+        this.props.logIn(response.data);
 
         // let user = this.props.userID
 
