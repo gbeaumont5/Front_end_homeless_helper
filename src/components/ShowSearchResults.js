@@ -86,12 +86,13 @@ class ShowSearchResults extends Component {
           <input type='submit' value='ok' className='btn' />
         </form>
         {
-          <div className='row'>
+      
+          <div className='main-display'>
             {this.state.loading
               ? 'loading...'
               : this.state.results.map(result => {
                   return (
-                    <div className='col s12 m6 l4' key={result.imdbID}>
+                    <div className='col s12 m6 l4 ' key={result.imdbID}>
                       <a
                         onClick={() => {
                           this.props.handleClick(result.imdbID);
@@ -121,6 +122,7 @@ class ShowSearchResults extends Component {
                   );
                 })}
           </div>
+  
         }
       </div>
     );
