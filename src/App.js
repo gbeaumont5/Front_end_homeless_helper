@@ -9,6 +9,7 @@ import Toggle from './components/toggle';
 import ShowSearchResults from './components/ShowSearchResults';
 import ShowMovie from './components/ShowMovie';
 import FriendsPage from './components/FriendsPage';
+import UserMainPage from './components/UserMainPage';
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -26,12 +27,16 @@ class App extends React.Component {
     this.state = {
       imdbID: '',
       movieSelected: false,
-      members: []
+      members: [],
+      isLoggedIn: false
     };
     this.handleClick = this.handleClick.bind(this);
     this.getMembers = this.getMembers.bind(this);
     this.handleAddMember = this.handleAddMember.bind(this);
+
     this.deleteMember = this.deleteMember.bind(this);
+
+    this.logIn = this.logIn.bind(this);
   }
   async getMembers() {
     const response = await axios(`${baseURL}/members`);
@@ -50,6 +55,10 @@ class App extends React.Component {
       members: copyMembers
     });
     console.log(this.state.members);
+  }
+
+  logIn() {
+    this.setState(prevState => ({ isLoggedIn: !prevState.isLoggedIn }));
   }
 
   handleClick(id) {
@@ -85,7 +94,13 @@ class App extends React.Component {
               <Link to='/Friends'>Friends</Link>
             </nav>
             <Route path='/' exact component={LandingPage} />
-            <Route path='/Login' component={Login} />
+
+            <Route
+              path='/Login'
+              render={props => (
+                <Login {...props} logIn={this.logIn} component={Login} />
+              )}
+            />
 
             <Route
               path='/'
@@ -94,6 +109,8 @@ class App extends React.Component {
                 <ShowSearchResults {...props} handleClick={this.handleClick} />
               )}
             />
+
+            <Route path='/User' render={props => <UserMainPage {...props} />} />
 
             <Route
               path={`/Movies/selected/${this.state.imdbID}`}
