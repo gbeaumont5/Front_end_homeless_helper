@@ -44,44 +44,46 @@ class EditMember extends Component {
 
   render() {
     return (
+      <div>
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor='name' />
-        <input
-          type='text'
-          id='name'
-          name='name'
-          onChange={this.handleChange}
-          value={this.props.name}
-          placeholder='member name'
-        />
-        <input
-          type='text'
-          id='email'
-          name='email'
-          onChange={this.handleChange}
-          value={this.props.email}
-          placeholder='member email'
-        />
+      <label htmlFor='name' />
+      <input
+        type='text'
+        id='name'
+        name='name'
+        onChange={this.handleChange}
+        value={this.props.name}
+        placeholder='member name'
+      />
+      <input
+        type='text'
+        id='email'
+        name='email'
+        onChange={this.handleChange}
+        value={this.props.email}
+        placeholder='member email'
+      />
 
-        <input
-          type='text'
-          id='picture'
-          name='picture'
-          onChange={this.handleChange}
-          value={this.props.picture}
-          placeholder='member url picture'
-        />
-        <input
-          type='password'
-          id='password'
-          name='password'
-          onChange={this.handleChange}
-          value={this.props.password}
-          placeholder='member password'
-        />
+      <input
+        type='text'
+        id='picture'
+        name='picture'
+        onChange={this.handleChange}
+        value={this.props.picture}
+        placeholder='member url picture'
+      />
+      <input
+        type='password'
+        id='password'
+        name='password'
+        onChange={this.handleChange}
+        value={this.props.password}
+        placeholder='member password'
+      />
 
-        <input type='submit' value='Save Changes' />
-      </form>
+      <input type='submit' value='Save Changes' />
+    </form>
+      </div>
     );
   }
 }
