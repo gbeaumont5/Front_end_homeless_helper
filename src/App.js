@@ -144,6 +144,12 @@ class App extends React.Component {
                 />
               )}
             />
+            <Route
+            path='/MyAccount'
+            render={props => (
+              <UserMainPage friends={this.props.friends} />
+            )}
+          />
             {/*<Route path='/About' component={About} /> */}
           </div>
         </Router>
