@@ -9,6 +9,7 @@ import Toggle from './components/toggle';
 import ShowSearchResults from './components/ShowSearchResults';
 import ShowMovie from './components/ShowMovie';
 import FriendsPage from './components/FriendsPage';
+import UserMainPage from './components/UserMainPage';
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -75,7 +76,7 @@ class App extends React.Component {
             <Route path='/Login' component={Login} />
 
             <Route
-              path='/Movies'
+              path='/'
               exact
               render={props => (
                 <ShowSearchResults {...props} handleClick={this.handleClick} />
@@ -101,6 +102,12 @@ class App extends React.Component {
                 <FriendsPage friends={this.props.friends} />
               )}
             />
+            <Route
+            path='/MyAccount'
+            render={props => (
+              <UserMainPage friends={this.props.friends} />
+            )}
+          />
             {/*<Route path='/About' component={About} /> */}
           </div>
         </Router>

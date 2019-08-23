@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import toggle from './toggle';
+import ShowFriends from './ShowFriends'
+
+let baseURL = process.env.REACT_APP_BASEURL;
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003';
+} else {
+  baseURL = 'https://fathomless-sierra-68956.herokuapp.com';
+}
 
 class UserMainPage extends Component {
     constructor(props) {
@@ -8,7 +17,7 @@ class UserMainPage extends Component {
         this.state = {
             members: [],
             member: {},
-            currentUserId: this.props.currentUserId
+            currentUser: this.props.currentUser
         }
     }
 
@@ -21,18 +30,36 @@ class UserMainPage extends Component {
 
     }
 
-    <Route
-    path='/User'
-    render={props => (
-      <UserMainPage {...props} />
-    )}
+    async getCurUser() {
+        const response = await axios(`${baseURL}/members/5d60038c51440c439607787b`)
+        const data = response.data
+        this.setState({
+            currentUser: data
+        })
+    }
 
     render() {
         return (
 
             <div class="content-wrapper">
 
-                // top row
+                <div class="col s12 m7">
+                    <h2 class="header">Horizontal Card</h2>
+                    <div class="card horizontal">
+                        <div class="card-image">
+                            <img src="https://lorempixel.com/100/190/nature/6" />
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="flex-container">
                     <div>
                         <img src="" width="100px" height="200px" alt="" />
@@ -58,15 +85,8 @@ class UserMainPage extends Component {
                 </div>
 
 
-                // friends
-                <div class="flex-container">
-
-                    <div class="friendbox">
-                        <img src="" width="140px" height="120px" alt="" />
-                        <p>review text goes here</p>
-                    </div>
-
-                </div>
+                <hr />
+                <ShowFriends currentUser={this.state.currentUser} />
 
             </div>
 
