@@ -7,13 +7,15 @@ class EditMember extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      email: '',
-      password: '',
-      picture: ''
+      name: this.props.currentUser.name,
+      email: this.props.currentUser.email,
+      password: this.props.currentUser.password,
+      picture: this.props.currentUser.picture,
+      id: this.props.currentUser._id
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    console.log('From EditMember page : ' + this.props.currentUser.name);
   }
 
   handleChange(event) {
@@ -26,63 +28,64 @@ class EditMember extends Component {
   }
 
   async handleSubmit(event) {
+    console.log(this.state);
+    console.log('Edit Member Handle Submit' + this.props.editThisMember);
     event.preventDefault();
-    const response = await axios.post(`${baseURL}/members`, {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      picture: this.state.picture
-    });
+    const response = await axios.put(
+      `${baseURL}/members/${this.props.currentUser._id}`,
+      this.state
+    );
     this.setState({
       name: '',
       email: '',
       password: '',
       picture: ''
     });
-    this.props.handleEditMember(response.data); //this is a prop coming from app.js, need to create it
+    // this.props.getMembers(); //this is a prop coming from app.js, need to create it
+    window.location.reload();
   }
 
   render() {
     return (
       <div>
-      <form onSubmit={this.handleSubmit}>
-      <label htmlFor='name' />
-      <input
-        type='text'
-        id='name'
-        name='name'
-        onChange={this.handleChange}
-        value={this.props.name}
-        placeholder='member name'
-      />
-      <input
-        type='text'
-        id='email'
-        name='email'
-        onChange={this.handleChange}
-        value={this.props.email}
-        placeholder='member email'
-      />
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor='name' />
+          <input
+            type='text'
+            id='name'
+            name='name'
+            onChange={this.handleChange}
+            defaultValue={this.props.currentUser.name}
+            placeholder='member name'
+          />
+          <input
+            type='text'
+            id='email'
+            name='email'
+            onChange={this.handleChange}
+            defaultValue={this.props.currentUser.email}
+            placeholder='member email'
+          />
 
-      <input
-        type='text'
-        id='picture'
-        name='picture'
-        onChange={this.handleChange}
-        value={this.props.picture}
-        placeholder='member url picture'
-      />
-      <input
-        type='password'
-        id='password'
-        name='password'
-        onChange={this.handleChange}
-        value={this.props.password}
-        placeholder='member password'
-      />
+          <input
+            type='text'
+            id='picture'
+            name='picture'
+            onChange={this.handleChange}
+            defaultValue={this.props.currentUser.picture}
+            placeholder='member url picture'
+          />
+          <input
+            type='password'
+            id='password'
+            name='password'
+            onChange={this.handleChange}
+            defaultValue={this.props.currentUser.password}
+            placeholder='member password'
+          />
 
-      <input type='submit' value='Save Changes' />
-    </form>
+          <input type='submit' value='Save Changes' />
+        </form>
       </div>
     );
   }
