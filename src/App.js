@@ -157,6 +157,7 @@ class App extends React.Component {
                   friends={this.props.friends}
                   editMember={this.editMember}
                   getMembers={this.getMembers}
+                  userID={this.state.userID}
                 />
               )}
             />

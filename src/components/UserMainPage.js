@@ -1,3 +1,5 @@
+
+    
 import React, { Component } from 'react';
 import axios from 'axios';
 import toggle from './toggle';
@@ -36,7 +38,7 @@ class UserMainPage extends Component {
   }
 
   async getCurUser() {
-    const response = await axios(`${baseURL}/members/5d60038c51440c439607787b`);
+    const response = await axios(`${baseURL}/members/${this.props.userID}`);
     const data = response.data;
     this.setState({
       currentUser: data[0]
@@ -48,7 +50,7 @@ class UserMainPage extends Component {
 
   async getUserReviews() {
     const response = await axios(
-      `${baseURL}/reviews/byUser/5d60038c51440c439607787b`
+      `${baseURL}/reviews/byUser/${this.props.userID}`
     );
     const data = response.data;
     this.setState({
@@ -72,6 +74,7 @@ class UserMainPage extends Component {
     this.getCurUser();
     this.getMembers();
     this.getUserReviews();
+    console.log(this.props.userID)
   }
 
   render() {
@@ -106,6 +109,13 @@ class UserMainPage extends Component {
         </div>
 
         <hr />
+        {this.state.edit && (
+            <EditMember
+              editThisMember={this.state.editThisMember}
+              getMembers={this.props.getMembers}
+              currentUser={this.state.currentUser}
+            />
+          )}
 
         <h4>My Reviews:</h4>
 
@@ -126,16 +136,11 @@ class UserMainPage extends Component {
           );
         })}
 
-        {this.state.edit && (
-          <EditMember
-            editThisMember={this.state.editThisMember}
-            getMembers={this.props.getMembers}
-            currentUser={this.state.currentUser}
-          />
-        )}
+
       </div>
     );
   }
 }
 
 export default UserMainPage;
+
