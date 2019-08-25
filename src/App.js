@@ -29,14 +29,17 @@ class App extends React.Component {
       movieSelected: false,
       members: [],
       isLoggedIn: false,
-      userID: ''
+      userID: '',
+      email: '',
+      password: ''
     };
     this.handleClick = this.handleClick.bind(this);
     this.getMembers = this.getMembers.bind(this);
     this.handleAddMember = this.handleAddMember.bind(this);
     this.deleteMember = this.deleteMember.bind(this);
-
-    this.logIn = this.logIn.bind(this);
+    // this.logIn = this.logIn.bind(this);
+    this.handleChange=this.handleChange.bind(this)
+    this.handleSubmit=this.handleSubmit.bind(this)
   }
   async getMembers() {
     const response = await axios(`${baseURL}/members`);
@@ -49,6 +52,48 @@ class App extends React.Component {
     console.log(this.state.members);
   }
 
+  handleChange(event) {
+    this.setState({
+      [event.currentTarget.name]: event.currentTarget.value
+    });
+   
+  }
+
+  async handleSubmit(event) {
+    event.preventDefault();
+    console.log(this.state.email);
+    console.log(this.state.password)
+    
+    try {
+      console.log('before', this.state)
+      const reqBody = {
+        email: this.state.email,
+        password: this.state.password
+      };
+      const response = await axios.post(`${baseURL}/users/login`, reqBody);
+      const usercall = await axios.get(`${baseURL}/members/password/${this.state.password}`)
+      const user = usercall.data[0]
+      
+
+      console.log('get ok', response)
+      console.log('response data', response.data)
+      console.log('user call to password?', );
+      
+      this.setState({
+          email: '',
+          password: '',
+          isLoggedIn: true,
+          userID: user._id
+        })
+    } catch (err) {
+        console.log('login error')
+      } 
+
+      console.log("is user logged in?", this.state.isLoggedIn);
+      console.log('user id is...', this.state.userID)
+      
+    }
+
   handleAddMember(member) {
     const copyMembers = [...this.state.members, member];
     this.setState({
@@ -57,14 +102,6 @@ class App extends React.Component {
     console.log(this.state.members);
   }
 
-  logIn(data) {
-    console.log('yesss', data)
-    this.setState(prevState => ({ 
-      isLoggedIn: !prevState.isLoggedIn,
-      userID: data._id
-    }));
-    
-  }
 
   handleClick(id) {
     // console.log(id);
@@ -86,17 +123,6 @@ class App extends React.Component {
     window.location.reload();
   }
 
-  // async editMember(id) {
-  //   console.log(id);
-  //   const response = await axios.put(`${baseURL}/members/${id}`);
-  //   const editThisMember = response.data;
-  //   this.setState(prevState => ({
-  //     editThisMember: editThisMember,
-  //     edit: true
-  //   }));
-  //   console.log(editThisMember);
-  // }
-
   render() {
     return (
       <div className='App'>
@@ -104,17 +130,54 @@ class App extends React.Component {
           <div className='container'>
             <nav>
               <Link to='/'>Home | </Link>
-              <Link to='/Login'>Login | My Account | </Link>
-              <Link to='/NewMember'>Register | </Link>
-              <Link to='/About'>About | </Link>
-              <Link to='/Friends'>Friends</Link>
+              {this.state.isLoggedIn ?  
+                <Link to='/MyAccount'>MyAccount | </Link> 
+              :
+                <Link to='/NewMember'>Register | </Link>}
+              <Link to='/Friends'>Members    </Link>
+                             {/* Modal Trigger */} 
+              <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Login</a>
             </nav>
             <Route path='/' exact component={LandingPage} />
+          
+            {/* Modal Structure*/}
+            <div id="modal1" class="modal modal-fixed-footer">
+              <div class="modal-content">
+              <form onSubmit={this.handleSubmit} className='login-form'>
+              <label htmlFor='email' />
+              <input
+                type='text'
+                id='email'
+                name='email'
+                onChange={this.handleChange}
+                value={this.state.email}
+                placeholder='email'
+              />
+              <label htmlFor='password' />
+              <input
+                type='password'
+                id='password'
+                name='password'
+                onChange={this.handleChange}
+                defaultValue={this.state.password}
+                placeholder='password'
+              />
+              <div class="modal-footer">
+              <input type='submit' className="modal-close waves-effect waves-green btn-flat" value='LOGIN'/>
+              </div>
+            </form>
+              </div>
+             
+              
+            </div>
+
+
+            {/* end of Modal Code*/}
 
             <Route
               path='/Login'
               render={props => (
-                <Login {...props} logIn={this.logIn} component={Login} />
+                <Login {...props} logIn={this.logIn} isLoggedIn={this.state.isLoggedIn} component={Login} />
               )}
             />
 
@@ -166,6 +229,7 @@ class App extends React.Component {
         </Router>
       </div>
     );
+    
   }
 }
 
