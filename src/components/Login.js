@@ -26,6 +26,7 @@ class Login extends Component {
     event.preventDefault();
     console.log(this.state.email);
     console.log(this.state.password)
+    
     try {
       console.log('before', this.state)
       const reqBody = {
@@ -34,9 +35,22 @@ class Login extends Component {
       };
       const response = await axios.post(`${baseURL}/users/login`, reqBody);
 
-      console.log('get ok', response.data)
-      if (response.data === 'Login working'){
-        this.props.logIn();
+      // const foundUser = response.data;
+
+      console.log('get ok', response)
+      console.log('response data', response.data)
+      if (response.data.email === this.state.email){
+        console.log('login working')
+        
+        // const response = await axios.get(`${baseURL}/users/email/:id`);
+        // const data = response.data
+        // console.log(data);
+        this.props.logIn(response.data);
+
+        // let user = this.props.userID
+
+        
+
       }
 
       } catch (err) {

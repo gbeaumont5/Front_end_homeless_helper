@@ -28,7 +28,8 @@ class App extends React.Component {
       imdbID: '',
       movieSelected: false,
       members: [],
-      isLoggedIn: false
+      isLoggedIn: false,
+      userID: ''
     };
     this.handleClick = this.handleClick.bind(this);
     this.getMembers = this.getMembers.bind(this);
@@ -56,8 +57,13 @@ class App extends React.Component {
     console.log(this.state.members);
   }
 
-  logIn() {
-    this.setState(prevState => ({ isLoggedIn: !prevState.isLoggedIn }));
+  logIn(data) {
+    console.log('yesss', data)
+    this.setState(prevState => ({ 
+      isLoggedIn: !prevState.isLoggedIn,
+      userID: data._id
+    }));
+    
   }
 
   handleClick(id) {
