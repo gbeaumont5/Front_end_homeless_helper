@@ -34,7 +34,6 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.getMembers = this.getMembers.bind(this);
     this.handleAddMember = this.handleAddMember.bind(this);
-
     this.deleteMember = this.deleteMember.bind(this);
 
     this.logIn = this.logIn.bind(this);
@@ -86,6 +85,17 @@ class App extends React.Component {
     });
     window.location.reload();
   }
+
+  // async editMember(id) {
+  //   console.log(id);
+  //   const response = await axios.put(`${baseURL}/members/${id}`);
+  //   const editThisMember = response.data;
+  //   this.setState(prevState => ({
+  //     editThisMember: editThisMember,
+  //     edit: true
+  //   }));
+  //   console.log(editThisMember);
+  // }
 
   render() {
     return (
@@ -141,11 +151,15 @@ class App extends React.Component {
               )}
             />
             <Route
-            path='/MyAccount'
-            render={props => (
-              <UserMainPage friends={this.props.friends} />
-            )}
-          />
+              path='/MyAccount'
+              render={props => (
+                <UserMainPage
+                  friends={this.props.friends}
+                  editMember={this.editMember}
+                  getMembers={this.getMembers}
+                />
+              )}
+            />
             {/*<Route path='/About' component={About} /> */}
           </div>
         </Router>

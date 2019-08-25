@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import toggle from './toggle';
 import ShowFriends from './ShowFriends';
+import EditMember from './EditMember';
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -19,8 +20,11 @@ class UserMainPage extends Component {
       member: {},
       currentUser: {},
       userReviews: [],
-      friends: []
+      friends: [],
+      edit: false
     };
+    this.editMember = this.editMember.bind(this);
+    // this.state.currentUser = this.state.currentUser.bind(this);
   }
 
   async getMembers() {
@@ -53,6 +57,17 @@ class UserMainPage extends Component {
     console.log('and the user reviews array is:', this.state.userReviews);
   }
 
+  async editMember(id) {
+    console.log(id);
+    const response = await axios.get(`${baseURL}/members/${id}`);
+    const editThisMember = response.data;
+    this.setState(prevState => ({
+      editThisMember: editThisMember,
+      edit: true
+    }));
+    console.log(editThisMember);
+  }
+
   componentDidMount() {
     this.getCurUser();
     this.getMembers();
@@ -61,20 +76,29 @@ class UserMainPage extends Component {
 
   render() {
     return (
-      <div class='content-wrapper'>
-        <div class='col s12 m7'>
-          <h2 class='header'>Welcome Back!</h2>
-          <div class='card horizontal'>
-            <div class='card-image'>
+      <div className='content-wrapper'>
+        <div className='col s12 m7'>
+          <h2 className='header'>Welcome Back!</h2>
+          <div className='card horizontal'>
+            <div className='card-image'>
               <img src={this.state.currentUser.picture} />
             </div>
-            <div class='card-stacked'>
-              <div class='card-content'>
+            <div className='card-stacked'>
+              <div className='card-content'>
                 <h5>{this.state.currentUser.name}</h5>
                 <h5>{this.state.currentUser.email}</h5>
-                <button className='btn'>Edit</button>
+
+                <button
+                  className='btn'
+                  onClick={() => {
+                    //   console.log(this.state.currentUser._id);
+                    this.editMember(this.state.currentUser._id);
+                  }}
+                >
+                  Edit
+                </button>
               </div>
-              <div class='card-action'>
+              <div className='card-action'>
                 <a href='#'>Delete My Account</a>
               </div>
             </div>
@@ -101,6 +125,14 @@ class UserMainPage extends Component {
             </div>
           );
         })}
+
+        {this.state.edit && (
+          <EditMember
+            editThisMember={this.state.editThisMember}
+            getMembers={this.props.getMembers}
+            currentUser={this.state.currentUser}
+          />
+        )}
       </div>
     );
   }
