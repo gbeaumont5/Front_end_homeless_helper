@@ -3,6 +3,7 @@ import axios from 'axios';
 
 
 let baseURL = process.env.REACT_APP_BASEURL;
+let API_URL = 'http://www.omdbapi.com/?apikey=b01d6b33&i=';
 
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003';
@@ -19,7 +20,7 @@ class UserMainPage extends Component {
             currentUser: {},
             userReviews: [],
             friends: [],
-            movie: {}
+            movieInfo: []
         }
     }
 
@@ -51,7 +52,21 @@ class UserMainPage extends Component {
       userReviews: data
     });
     console.log('and the user reviews array is:', this.state.userReviews);
-    }
+    }   
+
+    async getMovieObjects(review) { // to display on each review
+        let id = review.imdbID
+        const response = await axios(`${API_URL}${id}`)
+        let moviePic = response.data.Poster;
+        let movieTitle = response.data.Title
+            return (
+                <a>
+                <img src={moviePic} alt={movieTitle} />
+                <p>{movieTitle}</p>
+                </a>
+            )    
+        }
+    
 
   componentDidMount() {
     this.getCurUser();
@@ -93,6 +108,7 @@ class UserMainPage extends Component {
                 {this.state.userReviews.map(review => {
                     return (
                     <div>
+                       
                         <h6>{review.title} | <span>{review.rating}</span></h6>
                         <blockquote> <em>A review by: </em>{this.state.currentUser.name}</blockquote>
                         <p>{review.reviewNotes}</p>
