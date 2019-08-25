@@ -10,7 +10,8 @@ class FriendsPage extends Component {
     super(props);
     this.state = {
       friends: [],
-      friend: {}
+      friend: {}, 
+      friendID: ''
     };
     this.getFriendProfile = this.getFriendProfile.bind(this);
   }
@@ -27,11 +28,14 @@ class FriendsPage extends Component {
     });
   }
 
-  getFriendProfile(friend) {
-    console.log('Getting profile');
+  async getFriendProfile(friend) {
+    const response = await axios(`${baseURL}/members/${friend._id}`);
     this.setState({
-      friend: friend
+      friend: friend,
     });
+    console.log('name' + this.state.friend.name);
+    console.log('user id' + this.state.friend._id)
+    
   }
 
   render() {
