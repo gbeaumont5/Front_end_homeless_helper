@@ -93,7 +93,7 @@ class NewMember extends Component {
 
           <input type='submit' class='btn' value='Add Member' />
         </form>
-        {this.state.redirect && <Redirect to='/' />};
+        {this.state.redirect && <Redirect to='/' />}
       </div>
     );
   }
