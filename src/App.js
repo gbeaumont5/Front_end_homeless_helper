@@ -267,7 +267,7 @@ class App extends React.Component {
           />
           {/*<Route path='/About' component={About} /> */}
         </Router>
-        <footer class='footer-copyright blue-grey darken-3'>
+        <footer class='page-footer blue-grey darken-3'>
           <div class='container'>
             <div>
               © 2019 Corey Morrison, Sam Fernandes, Gary Beaumont, & David
