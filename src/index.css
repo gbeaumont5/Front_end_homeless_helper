@@ -28,7 +28,7 @@ code {
 }
 
 .user-pix {
-  width: 20%
+  width: 
 }
 
 .review-textarea {
@@ -45,6 +45,11 @@ code {
 
 .review-pix {
   width: 80px;
+  margin-right: 2%
+}
+
+.review-pix-friends {
+  width: 50px;
   margin-right: 2%
 }
 
