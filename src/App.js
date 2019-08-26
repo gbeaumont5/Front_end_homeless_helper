@@ -135,7 +135,7 @@ class App extends React.Component {
       <div className='App'>
         <Router className='nav'>
           <nav className='blue-grey darken-3 navigation-bar'>
-            <a className='left'>
+            <a className='left logo' href='/'>
               <img src='/images/tomato.png' /> GoodTomatoes
             </a>
             <Link to='/'>HOME | </Link>
@@ -169,33 +169,35 @@ class App extends React.Component {
           {/* Modal Structure*/}
           <div id='modal1' className='modal modal-fixed-footer'>
             <div className='modal-content'>
-              <form onSubmit={this.handleSubmit} className='login-form'>
-                <label htmlFor='email' />
-                <input
-                  type='text'
-                  id='email'
-                  name='email'
-                  onChange={this.handleChange}
-                  value={this.state.email}
-                  placeholder='email'
-                />
-                <label htmlFor='password' />
-                <input
-                  type='password'
-                  id='password'
-                  name='password'
-                  onChange={this.handleChange}
-                  defaultValue={this.state.password}
-                  placeholder='password'
-                />
-                <div className='modal-footer'>
+              <div className='container'>
+                <form onSubmit={this.handleSubmit} className='login-form'>
+                  <label htmlFor='email' />
                   <input
-                    type='submit'
-                    className='modal-close waves-effect waves-green btn-flat'
-                    value='LOGIN'
+                    type='text'
+                    id='email'
+                    name='email'
+                    onChange={this.handleChange}
+                    value={this.state.email}
+                    placeholder='email'
                   />
-                </div>
-              </form>
+                  <label htmlFor='password' />
+                  <input
+                    type='password'
+                    id='password'
+                    name='password'
+                    onChange={this.handleChange}
+                    defaultValue={this.state.password}
+                    placeholder='password'
+                  />
+                  <div className='footer'>
+                    <input
+                      type='submit'
+                      className='modal-close waves-effect waves-green btn-small'
+                      value='LOGIN'
+                    />
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
 
