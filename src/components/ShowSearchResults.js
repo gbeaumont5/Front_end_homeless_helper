@@ -17,7 +17,8 @@ class ShowSearchResults extends Component {
     this.state = {
       results: [],
       search: '',
-      loading: false
+      loading: false,
+      searchNotWorking: true
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,7 +36,11 @@ class ShowSearchResults extends Component {
     this.setState({
       loading: true
     });
-    fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMBD_API}&s=${this.state.search}`)
+    fetch(
+      `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMBD_API}&s=${
+        this.state.search
+      }`
+    )
       .then(response => response.json())
       .then(data =>
         // console.log(data))
@@ -45,9 +50,8 @@ class ShowSearchResults extends Component {
             loading: false
           });
           console.log(this.state.results);
-          
         }
-      );
+      )
     event.preventDefault();
   }
 
@@ -76,17 +80,19 @@ class ShowSearchResults extends Component {
     return (
       <div className='container'>
         <form onSubmit={this.handleSubmit}>
-          <input
-            type='text'
-            value={this.state.search}
-            onChange={this.handleChange}
-            placeholder='What Movie or Tv Show are you looking for?'
-            className='center'
-          />
-          <input type='submit' value='ok' className='btn' />
+          <div className='input-field'>
+            <input
+              type='text'
+              id='search'
+              value={this.state.search}
+              onChange={this.handleChange}
+              placeholder='What Movie or TV Show are you looking for?'
+              className='center'
+            />
+            <input type='submit' value='ok' className='btn' />
+          </div>
         </form>
         {
-      
           <div className='main-display'>
             {this.state.loading
               ? 'loading...'
@@ -122,7 +128,6 @@ class ShowSearchResults extends Component {
                   );
                 })}
           </div>
-  
         }
       </div>
     );

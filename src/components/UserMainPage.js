@@ -1,5 +1,3 @@
-
-    
 import React, { Component } from 'react';
 import axios from 'axios';
 import toggle from './toggle';
@@ -26,6 +24,7 @@ class UserMainPage extends Component {
       edit: false
     };
     this.editMember = this.editMember.bind(this);
+    this.hideFriend = this.hideFriend.bind(this);
     // this.state.currentUser = this.state.currentUser.bind(this);
   }
 
@@ -70,11 +69,17 @@ class UserMainPage extends Component {
     console.log(editThisMember);
   }
 
+  hideFriend() {
+    this.setState({
+      showFriend: false
+    });
+  }
+
   componentDidMount() {
     this.getCurUser();
     this.getMembers();
     this.getUserReviews();
-    console.log(this.props.userID)
+    console.log(this.props.userID);
   }
 
   render() {
@@ -110,12 +115,12 @@ class UserMainPage extends Component {
 
         <hr />
         {this.state.edit && (
-            <EditMember
-              editThisMember={this.state.editThisMember}
-              getMembers={this.props.getMembers}
-              currentUser={this.state.currentUser}
-            />
-          )}
+          <EditMember
+            editThisMember={this.state.editThisMember}
+            getMembers={this.props.getMembers}
+            currentUser={this.state.currentUser}
+          />
+        )}
 
         <h4>My Reviews:</h4>
         <br/>
@@ -138,12 +143,9 @@ class UserMainPage extends Component {
             </div>
           );
         })}
-
-
       </div>
     );
   }
 }
 
 export default UserMainPage;
-

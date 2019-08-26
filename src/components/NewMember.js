@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import axios from 'axios';
 const baseURL = 'http://localhost:3003';
 
@@ -9,11 +10,18 @@ class NewMember extends Component {
       name: '',
       email: '',
       password: '',
-      picture: ''
+      picture: '',
+      redirect: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    });
+  };
 
   handleChange(event) {
     this.setState({
@@ -38,50 +46,55 @@ class NewMember extends Component {
       password: '',
       picture: ''
     });
-    this.props.handleAddMember(response.data); //this is a prop coming from app.js, still need to create at App.js
+    this.props.handleAddMember(response.data);
+    this.setRedirect();
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <br />
-        <br />
-        <label htmlFor='name' />
-        <input
-          type='text'
-          id='name'
-          name='name'
-          onChange={this.handleChange}
-          value={this.state.name}
-          placeholder='your name'
-        />
-        <input
-          type='text'
-          id='email'
-          name='email'
-          onChange={this.handleChange}
-          value={this.state.email}
-          placeholder='your email'
-        />
-        <input
-          type='text'
-          id='picture'
-          name='picture'
-          onChange={this.handleChange}
-          value={this.state.picture}
-          placeholder='a url for your picture'
-        />
-        <input
-          type='password'
-          id='password'
-          name='password'
-          onChange={this.handleChange}
-          value={this.state.needs}
-          placeholder='password'
-        />
-        <br />
-        <input type='submit' class='btn' value='Add Member' />
-      </form>
+      <div className='container'>
+        <form onSubmit={this.handleSubmit}>
+          <br />
+          <br />
+          <label htmlFor='name' />
+          <input
+            type='text'
+            id='name'
+            name='name'
+            onChange={this.handleChange}
+            value={this.state.name}
+            placeholder='your name'
+          />
+          <input
+            type='text'
+            id='email'
+            name='email'
+            onChange={this.handleChange}
+            value={this.state.email}
+            placeholder='your email'
+          />
+          <input
+            type='text'
+            id='picture'
+            name='picture'
+            onChange={this.handleChange}
+            value={this.state.picture}
+            placeholder='a url for your picture'
+          />
+          <input
+            type='password'
+            id='password'
+            name='password'
+            onChange={this.handleChange}
+            value={this.state.needs}
+            placeholder='password'
+          />
+          <br />
+
+          <input type='submit' class='btn' value='Add Member' />
+        </form>
+        {this.state.redirect && <Redirect to='/' />};
+      </div>
     );
   }
 }

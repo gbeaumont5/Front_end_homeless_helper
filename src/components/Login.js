@@ -16,37 +16,30 @@ class Login extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.currentTarget.id]: event.currentTarget.value,
-
+      [event.currentTarget.id]: event.currentTarget.value
     });
-   
   }
 
   async handleSubmit(event) {
     event.preventDefault();
     console.log(this.state.email);
-    console.log(this.state.password)
+    console.log(this.state.password);
     try {
-      console.log('before', this.state)
+      console.log('before', this.state);
       const reqBody = {
         email: this.state.email,
         password: this.state.password
       };
       const response = await axios.post(`${baseURL}/users/login`, reqBody);
 
-      console.log('get ok', response.data)
-      if (response.data === 'Login working'){
+      console.log('get ok', response.data);
+      if (response.data === 'Login working') {
         this.props.logIn();
       }
-
-      } catch (err) {
-        console.log('login error')
-      } 
+    } catch (err) {
+      console.log('login error');
     }
-  
-    
-  
-
+  }
 
   render() {
     return (
@@ -79,4 +72,3 @@ class Login extends Component {
 }
 
 export default Login;
-

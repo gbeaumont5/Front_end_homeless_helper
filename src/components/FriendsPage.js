@@ -10,10 +10,12 @@ class FriendsPage extends Component {
     super(props);
     this.state = {
       friends: [],
-      friend: {}, 
-      friendID: ''
+      friend: {},
+      friendID: '',
+      showFriend: false
     };
     this.getFriendProfile = this.getFriendProfile.bind(this);
+    this.hideFriend = this.hideFriend.bind(this);
   }
 
   componentDidMount() {
@@ -32,15 +34,21 @@ class FriendsPage extends Component {
     const response = await axios(`${baseURL}/members/${friend._id}`);
     this.setState({
       friend: friend,
+      showFriend: true
     });
     console.log('name' + this.state.friend.name);
-    console.log('user id' + this.state.friend._id)
-    
+    console.log('user id' + this.state.friend._id);
+  }
+
+  hideFriend() {
+    this.setState({
+      showFriend: false
+    });
   }
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <h3>Members</h3>
         <div className='row'>
           {this.state.friends.map(friend => {
@@ -52,9 +60,13 @@ class FriendsPage extends Component {
                     className='card-image'
                     key={friend._id}
                   >
-                    <img alt='profile picture' className="circle" src={friend.picture} />
+                    <img
+                      alt='profile picture'
+                      className='circle'
+                      src={friend.picture}
+                    />
                   </div>
-                  <div class='card-content'>{friend.name}</div>
+                  <span className='card-title'>{friend.name}</span>
                   <div className='card-action'>
                     <div
                       className='btn'
@@ -70,7 +82,17 @@ class FriendsPage extends Component {
           })}
         </div>
 
+
         <FriendProfile friend={this.state.friend} userID={this.state.friend._id}/>
+
+        {this.state.showFriend && (
+          <FriendProfile
+            friend={this.state.friend}
+            showFriend={this.state.showFriend}
+            hideFriend={this.hideFriend}
+          />
+        )}
+
       </div>
     );
   }

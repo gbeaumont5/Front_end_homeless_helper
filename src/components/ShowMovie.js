@@ -137,7 +137,7 @@ class ShowMovie extends Component {
         <NewReview
           movie={this.state.movie}
           handleAddReview={this.handleAddReview}
-          userID={this.props.userID}
+          userID={this.props.userID} imdbID={this.props.imdbID}
         />
         : 'Please log in to create a review!'}
         
