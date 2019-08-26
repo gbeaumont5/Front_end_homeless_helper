@@ -32,12 +32,24 @@ class FriendProfile extends Component {
 
   render() {
     return (
-      <div className='row'>
-        <div className='col s12 m6 center'>
-          <div className='card'>
-            <div className='card-image'>
-              <img alt='pic' src={this.props.friend.picture} />
-              <h2>{this.props.friend.name}</h2>
+      <div className='container'>
+        <div className='row'>
+          <div className='col s12 m6 center'>
+            <div className='card'>
+              <div className='card-image'>
+                <img alt='pic' src={this.props.friend.picture} />
+                <h2>{this.props.friend.name}</h2>
+                <div className='card-action'>
+                  <button
+                    className='btn show-friend'
+                    onClick={() => {
+                      this.props.hideFriend();
+                    }}
+                  >
+                    Hide Friend
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
