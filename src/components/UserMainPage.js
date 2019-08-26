@@ -136,6 +136,9 @@ class UserMainPage extends Component {
                 {this.state.currentUser.name}
               </blockquote>
               <p>{review.reviewNotes}</p>
+
+              <button>Edit Review</button>
+              <button>Delete Review</button>
               <hr />
             </div>
           );
