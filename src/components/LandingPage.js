@@ -12,7 +12,13 @@ class LandingPage extends Component {
   render() {
     return (
       <div>
-        <h1>Good Tomatoes</h1>
+        <h1>
+          GoodTomat
+          <span>
+            <img src='/images/tomato_2.png' />
+          </span>
+          es
+        </h1>
       </div>
     );
   }

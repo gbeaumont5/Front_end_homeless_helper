@@ -48,7 +48,7 @@ class FriendsPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <h3>Members</h3>
         <div className='row'>
           {this.state.friends.map(friend => {
@@ -66,7 +66,7 @@ class FriendsPage extends Component {
                       src={friend.picture}
                     />
                   </div>
-                  <span class='card-title'>{friend.name}</span>
+                  <span className='card-title'>{friend.name}</span>
                   <div className='card-action'>
                     <div
                       className='btn'
@@ -81,6 +81,7 @@ class FriendsPage extends Component {
             );
           })}
         </div>
+
         {this.state.showFriend && (
           <FriendProfile
             friend={this.state.friend}

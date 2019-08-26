@@ -84,65 +84,74 @@ class UserMainPage extends Component {
 
   render() {
     return (
-      <div className='content-wrapper'>
-        <div className='col s12 m7'>
-          <h2 className='header'>Welcome Back!</h2>
-          <div className='card horizontal'>
-            <div className='card-image'>
-              <img src={this.state.currentUser.picture} />
-            </div>
-            <div className='card-stacked'>
-              <div className='card-content'>
-                <h5>{this.state.currentUser.name}</h5>
-                <h5>{this.state.currentUser.email}</h5>
-
-                <button
-                  className='btn'
-                  onClick={() => {
-                    //   console.log(this.state.currentUser._id);
-                    this.editMember(this.state.currentUser._id);
-                  }}
-                >
-                  Edit
-                </button>
+      <div className='container'>
+        <div className='content-wrapper'>
+          <div className='col s12 m7'>
+            <h2 className='header'>Welcome Back!</h2>
+            <div className='card horizontal'>
+              <div className='card-image'>
+                <img src={this.state.currentUser.picture} />
               </div>
-              <div className='card-action'>
-                <a href='#'>Delete My Account</a>
+              <div className='card-stacked'>
+                <div className='card-content'>
+                  <h5>{this.state.currentUser.name}</h5>
+                  <h5>{this.state.currentUser.email}</h5>
+
+                  <button
+                    className='btn'
+                    onClick={() => {
+                      //   console.log(this.state.currentUser._id);
+                      this.editMember(this.state.currentUser._id);
+                    }}
+                  >
+                    Edit
+                  </button>
+                </div>
+                <div className='card-action'>
+                  <a href='#'>Delete My Account</a>
+                </div>
               </div>
             </div>
           </div>
+
+          <hr />
+          {this.state.edit && (
+            <EditMember
+              editThisMember={this.state.editThisMember}
+              getMembers={this.props.getMembers}
+              currentUser={this.state.currentUser}
+            />
+          )}
+
+          <h4>My Reviews:</h4>
+          <br />
+
+
+          {this.state.userReviews.map(review => {
+            return (
+              <div>
+                <img
+                  className='review-pix left'
+                  src={review.poster}
+                  alt={review.movieTitle}
+                />
+                <h6>
+                  <strong>{review.movieTitle}</strong>
+                </h6>
+                <h6 className='left'>
+                  {review.title} | <span>{review.rating}</span>
+                </h6>
+                <blockquote>
+                  {' '}
+                  <em>A review by: </em>
+                  {this.state.currentUser.name}
+                </blockquote>
+                <p className='review-text'>{review.reviewNotes}</p>
+                <hr />
+              </div>
+            );
+          })}
         </div>
-
-        <hr />
-        {this.state.edit && (
-          <EditMember
-            editThisMember={this.state.editThisMember}
-            getMembers={this.props.getMembers}
-            currentUser={this.state.currentUser}
-          />
-        )}
-
-        <h4>My Reviews:</h4>
-
-        {this.state.userReviews.map(review => {
-          return (
-            <div>
-              <h6>
-                {review.title} | <span>{review.rating}</span>
-              </h6>
-              <blockquote>
-                {' '}
-                <em>A review by: </em>
-                {this.state.currentUser.name}
-              </blockquote>
-              <p>{review.reviewNotes}</p>
-
-              <button>Edit Review</button>
-              <button>Delete Review</button>
-              <hr />
-            </div>
-          );
-        })}
       </div>
     );
   }
