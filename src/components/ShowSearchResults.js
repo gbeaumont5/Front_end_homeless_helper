@@ -17,7 +17,8 @@ class ShowSearchResults extends Component {
     this.state = {
       results: [],
       search: '',
-      loading: false
+      loading: false,
+      searchNotWorking: true
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -50,7 +51,7 @@ class ShowSearchResults extends Component {
           });
           console.log(this.state.results);
         }
-      );
+      )
     event.preventDefault();
   }
 
