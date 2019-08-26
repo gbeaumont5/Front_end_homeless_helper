@@ -79,14 +79,17 @@ class ShowSearchResults extends Component {
     return (
       <div className='container'>
         <form onSubmit={this.handleSubmit}>
-          <input
-            type='text'
-            value={this.state.search}
-            onChange={this.handleChange}
-            placeholder='What Movie or Tv Show are you looking for?'
-            className='center'
-          />
-          <input type='submit' value='ok' className='btn' />
+          <div className='input-field'>
+            <input
+              type='text'
+              id='search'
+              value={this.state.search}
+              onChange={this.handleChange}
+              placeholder='What Movie or TV Show are you looking for?'
+              className='center'
+            />
+            <input type='submit' value='ok' className='btn' />
+          </div>
         </form>
         {
           <div className='main-display'>
