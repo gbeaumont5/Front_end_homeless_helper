@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import ShowMembers from '../components/ShowSearchResults';
+import ShowMembers from './ShowSearchResults';
 
 class Toggle extends Component {
   constructor(props) {

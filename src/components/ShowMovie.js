@@ -14,7 +14,7 @@ class ShowMovie extends Component {
       userID: ''
     };
     this.handleAddReview = this.handleAddReview.bind(this);
-    console.log('this.props.imdbID: ', +this.state.imdbID);
+    console.log('this.props.imdbID: ', this.state.imdbID);
     this.addDefaultSrc = this.addDefaultSrc.bind(this);
   }
 
@@ -135,7 +135,7 @@ class ShowMovie extends Component {
 
         {this.props.isLoggedIn? 
         <NewReview
-          imdbID={this.props.imdbID}
+          movie={this.state.movie}
           handleAddReview={this.handleAddReview}
           userID={this.props.userID}
         />

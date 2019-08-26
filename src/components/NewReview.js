@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom'
 
 let baseURL = 'http://localhost:3003';
 
@@ -22,12 +23,15 @@ class NewReview extends Component {
 
   handleChange(event) {
     this.setState({
+
       [event.currentTarget.id]: event.currentTarget.value,
+
     });
   }
 
   async handleSubmit(event) {
     event.preventDefault();
+
     console.log('new review ID', this.state.createdByID)
     console.log('new review imbd', this.state.imdbID)
     console.log('new review title', this.state.title)
@@ -40,7 +44,7 @@ class NewReview extends Component {
       reviewNotes: this.state.reviewNotes
     });
     this.setState({
-      imdbID: this.props.imdbID,
+      imdbID: this.props.movie.imdbID,
       title: '',
       reviewNotes: ''
     });
@@ -80,6 +84,7 @@ class NewReview extends Component {
             onChange={this.handleChange}
             defaultValue={this.state.rating}
             placeholder='Rating'
+
           />
           <input
             type='text'
@@ -87,6 +92,7 @@ class NewReview extends Component {
             name='reviewNotes'
             onChange={this.handleChange}
             defaultValue={this.state.reviewNotes}
+            className="review-textarea"
             placeholder='Write your review here'
           />
           <br />
