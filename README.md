@@ -16,4 +16,16 @@ http://good_tomatoes.surge.sh/
 
 HTML, CSS, Materialize, Javascript, Express, React, MongoDB, Mongoose, Node.js 
 
-## 
+## Future Improvements
+
+* 
+
+## Credits
+
+* https://reactjs.org/docs/
+* 
+
+
+## Engineered by:
+
+* 

@@ -56,42 +56,42 @@ class FriendsPage extends Component {
               <div className='col s12 m4'>
                 <div className='card small'>
                   <div
-                    onClick={() => this.getFriendProfile(friend)}
-                    className='card-image'
-                    key={friend._id}
+                  onClick={() => this.getFriendProfile(friend)}
+                  className='card-image'
+                  key={friend._id}
                   >
-                    <img
-                      alt='profile picture'
-                      className='circle'
-                      src={friend.picture}
-                    />
+                  <img
+                    alt='profile picture'
+                    className='circle'
+                    src={friend.picture}
+                  />
                   </div>
                   <span className='card-title'>{friend.name}</span>
-                  <div className='card-action'>
-                    <div
-                      className='btn'
-                      onClick={() => this.props.deleteMember(friend._id)}
-                    >
-                      {' '}
-                      Delete
-                    </div>
+                <div className='card-action'>
+                  <div
+                    className='btn'
+                    onClick={() => this.props.deleteMember(friend._id)}
+                  >
+                    {' '}
+                    Delete
                   </div>
                 </div>
+                </div>
+                
               </div>
             );
-          })}
-        </div>
-
-        {this.state.showFriend && (
-          <FriendProfile
-            friend={this.state.friend}
-            showFriend={this.state.showFriend}
-            hideFriend={this.hideFriend}
-          />
-        )}
+        })}
+        <hr />
+        
+         <FriendProfile
+         friend={this.state.friend}
+         showFriend={this.state.showFriend}
+         hideFriend={this.hideFriend}
+          userID={this.state.friend._id} />
       </div>
-    );
+    </div>
+    )
   }
 }
 
-export default FriendsPage;
+export default FriendsPage
