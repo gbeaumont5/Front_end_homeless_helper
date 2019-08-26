@@ -37,9 +37,9 @@ class App extends React.Component {
     this.getMembers = this.getMembers.bind(this);
     this.handleAddMember = this.handleAddMember.bind(this);
     this.deleteMember = this.deleteMember.bind(this);
-    this.handleChange=this.handleChange.bind(this)
-    this.handleSubmit=this.handleSubmit.bind(this)
-    this.handleLogOut=this.handleLogOut.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
   async getMembers() {
     const response = await axios(`${baseURL}/members`);
@@ -57,53 +57,51 @@ class App extends React.Component {
     this.setState({
       [event.currentTarget.name]: event.currentTarget.value
     });
-   
   }
 
   async handleSubmit(event) {
     event.preventDefault();
     console.log(this.state.email);
-    console.log(this.state.password)
-    
+    console.log(this.state.password);
+
     try {
-      console.log('before', this.state)
+      console.log('before', this.state);
       const reqBody = {
         email: this.state.email,
         password: this.state.password
       };
       const response = await axios.post(`${baseURL}/users/login`, reqBody);
-      const usercall = await axios.get(`${baseURL}/members/password/${this.state.password}`)
-      const user = usercall.data[0]
-      
+      const usercall = await axios.get(
+        `${baseURL}/members/password/${this.state.password}`
+      );
+      const user = usercall.data[0];
 
-      console.log('get ok', response)
-      console.log('response data', response.data)
-      console.log('user call to password?', );
-      
+      console.log('get ok', response);
+      console.log('response data', response.data);
+      console.log('user call to password?');
+
       this.setState({
-          email: '',
-          password: '',
-          isLoggedIn: true,
-          userID: user._id
-        })
+        email: '',
+        password: '',
+        isLoggedIn: true,
+        userID: user._id
+      });
     } catch (err) {
-        console.log('login error')
-      } 
-
-      console.log("is user logged in?", this.state.isLoggedIn);
-      console.log('user id is...', this.state.userID)
-      
+      console.log('login error');
     }
 
-    //this gets passed on to the NewMember component, which is rendered with the path /Register
-    handleAddMember(member) {
+    console.log('is user logged in?', this.state.isLoggedIn);
+    console.log('user id is...', this.state.userID);
+  }
+
+  //this gets passed on to the NewMember component, which is rendered with the path /Register
+  handleAddMember(member) {
     const copyMembers = [...this.state.members, member];
     this.setState({
       members: copyMembers
     });
     console.log(this.state.members);
   }
-
 
   handleClick(id) {
     // console.log(id);
@@ -129,7 +127,7 @@ class App extends React.Component {
     this.setState({
       isLoggedIn: false,
       userID: ''
-    })
+    });
   }
 
   render() {
@@ -137,60 +135,75 @@ class App extends React.Component {
       <div className='App'>
         <Router className='nav'>
           <div className='container'>
-            <nav className="blue-grey darken-3 navigation-bar">
+            <nav className='blue-grey darken-3 navigation-bar'>
               <Link to='/'>Home | </Link>
-              {this.state.isLoggedIn ?  
-                <Link to='/MyAccount'>MyAccount | </Link> 
-              :
-                <Link to='/NewMember'>Register | </Link>}
-              <Link to='/Friends'>Members    </Link>
-              {/* Modal Trigger */} 
+              {this.state.isLoggedIn ? (
+                <Link to='/MyAccount'>MyAccount | </Link>
+              ) : (
+                <Link to='/NewMember'>Register | </Link>
+              )}
+              <Link to='/Friends'>Members </Link>
+              {/* Modal Trigger */}
 
-              {this.state.isLoggedIn? 
-                <button className="btn" onClick={this.handleLogOut}>Logout</button>
-                :
-                <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Login</a>}
+              {this.state.isLoggedIn ? (
+                <button className='btn' onClick={this.handleLogOut}>
+                  Logout
+                </button>
+              ) : (
+                <a
+                  className='waves-effect waves-light btn modal-trigger'
+                  href='#modal1'
+                >
+                  Login
+                </a>
+              )}
             </nav>
             <Route path='/' exact component={LandingPage} />
-          
-            {/* Modal Structure*/}
-            <div id="modal1" class="modal modal-fixed-footer">
-              <div class="modal-content">
-              <form onSubmit={this.handleSubmit} className='login-form'>
-              <label htmlFor='email' />
-              <input
-                type='text'
-                id='email'
-                name='email'
-                onChange={this.handleChange}
-                value={this.state.email}
-                placeholder='email'
-              />
-              <label htmlFor='password' />
-              <input
-                type='password'
-                id='password'
-                name='password'
-                onChange={this.handleChange}
-                defaultValue={this.state.password}
-                placeholder='password'
-              />
-              <div class="modal-footer">
-              <input type='submit' className="modal-close waves-effect waves-green btn-flat" value='LOGIN'/>
-              </div>
-            </form>
-              </div>
-             
-              
-            </div>
 
+            {/* Modal Structure*/}
+            <div id='modal1' className='modal modal-fixed-footer'>
+              <div className='modal-content'>
+                <form onSubmit={this.handleSubmit} className='login-form'>
+                  <label htmlFor='email' />
+                  <input
+                    type='text'
+                    id='email'
+                    name='email'
+                    onChange={this.handleChange}
+                    value={this.state.email}
+                    placeholder='email'
+                  />
+                  <label htmlFor='password' />
+                  <input
+                    type='password'
+                    id='password'
+                    name='password'
+                    onChange={this.handleChange}
+                    defaultValue={this.state.password}
+                    placeholder='password'
+                  />
+                  <div className='modal-footer'>
+                    <input
+                      type='submit'
+                      className='modal-close waves-effect waves-green btn-flat'
+                      value='LOGIN'
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
 
             {/* end of Modal Code*/}
 
             <Route
               path='/Login'
               render={props => (
-                <Login {...props} logIn={this.logIn} isLoggedIn={this.state.isLoggedIn} component={Login} />
+                <Login
+                  {...props}
+                  logIn={this.logIn}
+                  isLoggedIn={this.state.isLoggedIn}
+                  component={Login}
+                />
               )}
             />
 
@@ -207,10 +220,12 @@ class App extends React.Component {
             <Route
               path={`/Movies/selected/${this.state.imdbID}`}
               render={props => (
-
-
-                <ShowMovie {...props} imdbID={this.state.imdbID} userID={this.state.userID} isLoggedIn={this.state.isLoggedIn}/>
-
+                <ShowMovie
+                  {...props}
+                  imdbID={this.state.imdbID}
+                  userID={this.state.userID}
+                  isLoggedIn={this.state.isLoggedIn}
+                />
               )}
             />
 
@@ -245,7 +260,6 @@ class App extends React.Component {
         </Router>
       </div>
     );
-    
   }
 }
 

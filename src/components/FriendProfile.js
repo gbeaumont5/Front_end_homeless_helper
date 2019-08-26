@@ -21,6 +21,16 @@ class FriendProfile extends Component {
             <div className='card-image'>
               <img alt='pic' src={this.props.friend.picture} />
               <h2>{this.props.friend.name}</h2>
+              <div className='card-action'>
+                <button
+                  className='btn show-friend'
+                  onClick={() => {
+                    this.props.hideFriend();
+                  }}
+                >
+                  Hide Friend
+                </button>
+              </div>
             </div>
           </div>
         </div>
