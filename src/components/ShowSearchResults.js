@@ -35,7 +35,7 @@ class ShowSearchResults extends Component {
     this.setState({
       loading: true
     });
-    fetch(`http://www.omdbapi.com/?apikey=b01d6b33&s=${this.state.search}`)
+    fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMBD_API}&s=${this.state.search}`)
       .then(response => response.json())
       .then(data =>
         // console.log(data))

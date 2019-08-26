@@ -10,7 +10,8 @@ class ShowMovie extends Component {
     super(props);
     this.state = {
       movie: {},
-      reviews: []
+      reviews: [],
+      userID: ''
     };
     this.handleAddReview = this.handleAddReview.bind(this);
     console.log('this.props.imdbID: ', +this.state.imdbID);
@@ -19,7 +20,10 @@ class ShowMovie extends Component {
 
   componentDidMount() {
     this.getMovie();
-  }
+    this.setState({
+      userID: this.props.userID
+  })
+}
 
   async getReviews() {
     const response = await axios(`http://localhost:3003/reviews`);
@@ -129,12 +133,16 @@ class ShowMovie extends Component {
 
         <h2>{this.state.movie.Title}</h2>
 
+        {this.props.isLoggedIn? 
         <NewReview
           imdbID={this.props.imdbID}
           handleAddReview={this.handleAddReview}
+          userID={this.props.userID}
         />
-
-        <ShowReviews imdbID={this.props.imdbID} />
+        : 'Please log in to create a review!'}
+        
+        <ShowReviews imdbID={this.props.imdbID} userID={this.props.userID} />
+  
       </div>
     );
   }
