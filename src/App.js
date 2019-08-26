@@ -138,32 +138,33 @@ class App extends React.Component {
             <a className='logo left' href='/'>
               <img src='/images/tomato.png' /> GoodTomatoes
             </a>
+            <div className='right'>
+              <Link to='/'>HOME | </Link>
+              {this.state.isLoggedIn ? (
+                <Link to='/MyAccount'>MY ACCOUNT | </Link>
+              ) : (
+                <Link to='/NewMember'>REGISTER | </Link>
+              )}
+              <Link to='/Friends'>MEMBERS </Link>
+              {/* Modal Trigger */}
 
-            <Link to='/'>HOME | </Link>
-            {this.state.isLoggedIn ? (
-              <Link to='/MyAccount'>MY ACCOUNT | </Link>
-            ) : (
-              <Link to='/NewMember'>REGISTER | </Link>
-            )}
-            <Link to='/Friends'>MEMBERS </Link>
-            {/* Modal Trigger */}
-
-            {this.state.isLoggedIn ? (
-              <button
-                className='btn-small right main-login'
-                onClick={this.handleLogOut}
-              >
-                Logout
-              </button>
-            ) : (
-              <a
-                className='waves-effect waves-light btn-small right
+              {this.state.isLoggedIn ? (
+                <button
+                  className='btn-small right main-login'
+                  onClick={this.handleLogOut}
+                >
+                  Logout
+                </button>
+              ) : (
+                <a
+                  className='waves-effect waves-light btn-small right
                modal-trigger main-login'
-                href='#modal1'
-              >
-                Login
-              </a>
-            )}
+                  href='#modal1'
+                >
+                  Login
+                </a>
+              )}
+            </div>
           </nav>
           <Route path='/' exact component={LandingPage} />
 
