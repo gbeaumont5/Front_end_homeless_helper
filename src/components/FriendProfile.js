@@ -3,7 +3,13 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 
-const baseURL = 'http://localhost:3003';
+let baseURL = process.env.REACT_APP_BASEURL;
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003';
+} else {
+  baseURL = 'https://dashboard.heroku.com/apps/goodtomatoes';
+}
 
 class FriendProfile extends Component {
   constructor(props) {

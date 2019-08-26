@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 
-const baseURL = 'http://localhost:3003';
+let baseURL = process.env.REACT_APP_BASEURL;
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003';
+} else {
+  baseURL = 'https://dashboard.heroku.com/apps/goodtomatoes';
+}
 
 // review schema has a createdById which is the member who created it 
 class Reviews extends Component {

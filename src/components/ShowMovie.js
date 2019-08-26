@@ -3,7 +3,15 @@ import axios from 'axios';
 import NewReview from './NewReview';
 import ShowReviews from './ShowReview';
 
-let baseURL = 'http://www.omdbapi.com/?apikey=b01d6b33&i=';
+let apiURL = 'http://www.omdbapi.com/?apikey=b01d6b33&i=';
+
+let baseURL = process.env.REACT_APP_BASEURL;
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003';
+} else {
+  baseURL = 'https://dashboard.heroku.com/apps/goodtomatoes';
+}
 
 class ShowMovie extends Component {
   constructor(props) {
@@ -26,7 +34,7 @@ class ShowMovie extends Component {
 }
 
   async getReviews() {
-    const response = await axios(`http://localhost:3003/reviews`);
+    const response = await axios(`${baseURL}/reviews`);
     const data = response.data;
     this.setState({
       reviews: data
@@ -38,7 +46,7 @@ class ShowMovie extends Component {
     const response = await axios(`${baseURL}${this.props.imdbID}`);
     console.log('response: ', response);
     const data = response.data;
-    console.log('base url: ', `${baseURL}${this.props.imdbID}`);
+    console.log('base url: ', `${apiURL}${this.props.imdbID}`);
     console.log('id: ', this.props.imdbID);
     console.log('data: ', data);
     this.setState({

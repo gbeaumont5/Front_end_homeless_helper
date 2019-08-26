@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-let baseURL = 'http://localhost:3003';
+let baseURL = process.env.REACT_APP_BASEURL;
 
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003';
+} else {
+  baseURL = 'https://dashboard.heroku.com/apps/goodtomatoes';
+}
 class EditReview extends Component {
   constructor(props) {
     super(props);

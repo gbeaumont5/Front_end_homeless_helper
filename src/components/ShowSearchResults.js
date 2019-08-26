@@ -3,13 +3,15 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 require('dotenv').config();
 
-let baseURL = 'http://localhost:3003';
+
 let API_URL = 'http://www.omdbapi.com/';
+
+let baseURL = process.env.REACT_APP_BASEURL;
 
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003';
 } else {
-  baseURL = 'http://good_tomatoes.surge.sh/';
+  baseURL = 'https://dashboard.heroku.com/apps/goodtomatoes';
 }
 
 class ShowSearchResults extends Component {
