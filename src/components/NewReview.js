@@ -11,7 +11,10 @@ class NewReview extends Component {
       createdByID: this.props.userID,
       title: '',
       rating: null,
-      reviewNotes: ''
+      reviewNotes: '',
+      redirect: false,
+      rerouteLink: '/movies/'
+
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,6 +31,14 @@ class NewReview extends Component {
 
     });
   }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+
+  
 
   async handleSubmit(event) {
     event.preventDefault();
@@ -51,8 +62,8 @@ class NewReview extends Component {
       reviewNotes: ''
     });
     this.props.handleAddReview(response.data); 
-    // window.location.reload()
-    
+    this.setRedirect();
+    console.log(this.props.imdbID)
   }
 
   render() {
@@ -98,9 +109,11 @@ class NewReview extends Component {
             placeholder='Write your review here'
           />
           <br />
+
           <input type='submit' className='btn' value='Submit Review' />
           
         </form>
+        {this.state.redirect && <Redirect to={`/`} />}
       </div>
     );
   }

@@ -51,9 +51,7 @@ class ShowSearchResults extends Component {
           });
           console.log(this.state.results);
         }
-      
-      
-      );
+      )
     event.preventDefault();
   }
 
