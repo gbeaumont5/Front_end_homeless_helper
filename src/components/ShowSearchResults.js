@@ -42,16 +42,17 @@ class ShowSearchResults extends Component {
       }`
     )
       .then(response => response.json())
-      .then(data =>
-        // console.log(data))
-        {
-          this.setState({
-            results: data.Search,
-            loading: false
-          });
-          console.log(this.state.results);
-        }
-      )
+      .then(data => {
+        this.setState({
+          results: data.Search,
+          loading: false
+        });
+      })
+      .catch(() => {
+        alert('Please check spelling and try again');
+        window.location.reload();
+        console.log(this.state.results);
+      });
     event.preventDefault();
   }
 
@@ -59,22 +60,6 @@ class ShowSearchResults extends Component {
     event.target.src =
       'https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=945&q=80';
   }
-  // componentDidMount() {
-  //     this.setState({
-  //       loading: true
-  //     })
-  //     fetch(`http://www.omdbapi.com/?apikey=b01d6b33&t=${this.state.search}`)
-  //     .then(response => response.json())
-  //     .then(data =>
-  //       // console.log(data))
-  //       {
-  //       this.setState({
-  //         results: data,
-  //         loading: false
-  //       })
-  //       console.log(this.state.results)
-  //     })
-  //   }
 
   render() {
     return (
