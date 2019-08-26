@@ -43,45 +43,48 @@ class NewMember extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <br />
-        <br />
-        <label htmlFor='name' />
-        <input
-          type='text'
-          id='name'
-          name='name'
-          onChange={this.handleChange}
-          value={this.state.name}
-          placeholder='your name'
-        />
-        <input
-          type='text'
-          id='email'
-          name='email'
-          onChange={this.handleChange}
-          value={this.state.email}
-          placeholder='your email'
-        />
-        <input
-          type='text'
-          id='picture'
-          name='picture'
-          onChange={this.handleChange}
-          value={this.state.picture}
-          placeholder='a url for your picture'
-        />
-        <input
-          type='password'
-          id='password'
-          name='password'
-          onChange={this.handleChange}
-          value={this.state.needs}
-          placeholder='password'
-        />
-        <br />
-        <input type='submit' class='btn' value='Add Member' />
-      </form>
+      <div className='container'>
+        <form onSubmit={this.handleSubmit}>
+          <br />
+          <br />
+          <label htmlFor='name' />
+          <input
+            type='text'
+            id='name'
+            name='name'
+            onChange={this.handleChange}
+            value={this.state.name}
+            placeholder='your name'
+          />
+          <input
+            type='text'
+            id='email'
+            name='email'
+            onChange={this.handleChange}
+            value={this.state.email}
+            placeholder='your email'
+          />
+          <input
+            type='text'
+            id='picture'
+            name='picture'
+            onChange={this.handleChange}
+            value={this.state.picture}
+            placeholder='a url for your picture'
+          />
+          <input
+            type='password'
+            id='password'
+            name='password'
+            onChange={this.handleChange}
+            value={this.state.needs}
+            placeholder='password'
+          />
+          <br />
+
+          <input type='submit' class='btn' value='Add Member' />
+        </form>
+      </div>
     );
   }
 }

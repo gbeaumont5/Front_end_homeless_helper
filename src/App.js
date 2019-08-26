@@ -134,129 +134,134 @@ class App extends React.Component {
     return (
       <div className='App'>
         <Router className='nav'>
-          <div className='container'>
-            <nav className='blue-grey darken-3 navigation-bar'>
-              <Link to='/'>Home | </Link>
-              {this.state.isLoggedIn ? (
-                <Link to='/MyAccount'>MyAccount | </Link>
-              ) : (
-                <Link to='/NewMember'>Register | </Link>
-              )}
-              <Link to='/Friends'>Members </Link>
-              {/* Modal Trigger */}
+          <nav className='blue-grey darken-3 navigation-bar'>
+            <a className='left'>
+              <img src='/images/tomato.png' /> GoodTomatoes
+            </a>
+            <Link to='/'>HOME | </Link>
+            {this.state.isLoggedIn ? (
+              <Link to='/MyAccount'>MY ACCOUNT | </Link>
+            ) : (
+              <Link to='/NewMember'>REGISTER | </Link>
+            )}
+            <Link to='/Friends'>MEMBERS </Link>
+            {/* Modal Trigger */}
 
-              {this.state.isLoggedIn ? (
-                <button className='btn' onClick={this.handleLogOut}>
-                  Logout
-                </button>
-              ) : (
-                <a
-                  className='waves-effect waves-light btn modal-trigger'
-                  href='#modal1'
-                >
-                  Login
-                </a>
-              )}
-            </nav>
-            <Route path='/' exact component={LandingPage} />
+            {this.state.isLoggedIn ? (
+              <button
+                className='btn-small right main-login'
+                onClick={this.handleLogOut}
+              >
+                Logout
+              </button>
+            ) : (
+              <a
+                className='waves-effect waves-light btn-small right
+               modal-trigger main-login'
+                href='#modal1'
+              >
+                Login
+              </a>
+            )}
+          </nav>
+          <Route path='/' exact component={LandingPage} />
 
-            {/* Modal Structure*/}
-            <div id='modal1' className='modal modal-fixed-footer'>
-              <div className='modal-content'>
-                <form onSubmit={this.handleSubmit} className='login-form'>
-                  <label htmlFor='email' />
+          {/* Modal Structure*/}
+          <div id='modal1' className='modal modal-fixed-footer'>
+            <div className='modal-content'>
+              <form onSubmit={this.handleSubmit} className='login-form'>
+                <label htmlFor='email' />
+                <input
+                  type='text'
+                  id='email'
+                  name='email'
+                  onChange={this.handleChange}
+                  value={this.state.email}
+                  placeholder='email'
+                />
+                <label htmlFor='password' />
+                <input
+                  type='password'
+                  id='password'
+                  name='password'
+                  onChange={this.handleChange}
+                  defaultValue={this.state.password}
+                  placeholder='password'
+                />
+                <div className='modal-footer'>
                   <input
-                    type='text'
-                    id='email'
-                    name='email'
-                    onChange={this.handleChange}
-                    value={this.state.email}
-                    placeholder='email'
+                    type='submit'
+                    className='modal-close waves-effect waves-green btn-flat'
+                    value='LOGIN'
                   />
-                  <label htmlFor='password' />
-                  <input
-                    type='password'
-                    id='password'
-                    name='password'
-                    onChange={this.handleChange}
-                    defaultValue={this.state.password}
-                    placeholder='password'
-                  />
-                  <div className='modal-footer'>
-                    <input
-                      type='submit'
-                      className='modal-close waves-effect waves-green btn-flat'
-                      value='LOGIN'
-                    />
-                  </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
-
-            {/* end of Modal Code*/}
-
-            <Route
-              path='/Login'
-              render={props => (
-                <Login
-                  {...props}
-                  logIn={this.logIn}
-                  isLoggedIn={this.state.isLoggedIn}
-                  component={Login}
-                />
-              )}
-            />
-
-            <Route
-              path='/'
-              exact
-              render={props => (
-                <ShowSearchResults {...props} handleClick={this.handleClick} />
-              )}
-            />
-
-            <Route path='/User' render={props => <UserMainPage {...props} />} />
-
-            <Route
-              path={`/Movies/selected/${this.state.imdbID}`}
-              render={props => (
-                <ShowMovie
-                  {...props}
-                  imdbID={this.state.imdbID}
-                  userID={this.state.userID}
-                  isLoggedIn={this.state.isLoggedIn}
-                />
-              )}
-            />
-
-            <Route
-              path='/NewMember'
-              render={props => (
-                <NewMember handleAddMember={this.handleAddMember} />
-              )}
-            />
-            <Route
-              path='/Friends'
-              render={props => (
-                <FriendsPage
-                  friends={this.props.friends}
-                  deleteMember={this.deleteMember}
-                />
-              )}
-            />
-            <Route
-              path='/MyAccount'
-              render={props => (
-                <UserMainPage
-                  friends={this.props.friends}
-                  editMember={this.editMember}
-                  getMembers={this.getMembers}
-                  userID={this.state.userID}
-                />
-              )}
-            />
-            {/*<Route path='/About' component={About} /> */}
           </div>
+
+          {/* end of Modal Code*/}
+
+          <Route
+            path='/Login'
+            render={props => (
+              <Login
+                {...props}
+                logIn={this.logIn}
+                isLoggedIn={this.state.isLoggedIn}
+                component={Login}
+              />
+            )}
+          />
+
+          <Route
+            path='/'
+            exact
+            render={props => (
+              <ShowSearchResults {...props} handleClick={this.handleClick} />
+            )}
+          />
+
+          <Route path='/User' render={props => <UserMainPage {...props} />} />
+
+          <Route
+            path={`/Movies/selected/${this.state.imdbID}`}
+            render={props => (
+              <ShowMovie
+                {...props}
+                imdbID={this.state.imdbID}
+                userID={this.state.userID}
+                isLoggedIn={this.state.isLoggedIn}
+              />
+            )}
+          />
+
+          <Route
+            path='/NewMember'
+            render={props => (
+              <NewMember handleAddMember={this.handleAddMember} />
+            )}
+          />
+          <Route
+            path='/Friends'
+            render={props => (
+              <FriendsPage
+                friends={this.props.friends}
+                deleteMember={this.deleteMember}
+              />
+            )}
+          />
+          <Route
+            path='/MyAccount'
+            render={props => (
+              <UserMainPage
+                friends={this.props.friends}
+                editMember={this.editMember}
+                getMembers={this.getMembers}
+                userID={this.state.userID}
+              />
+            )}
+          />
+          {/*<Route path='/About' component={About} /> */}
         </Router>
       </div>
     );

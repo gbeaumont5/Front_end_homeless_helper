@@ -48,7 +48,7 @@ class FriendsPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <h3>Members</h3>
         <div className='row'>
           {this.state.friends.map(friend => {
