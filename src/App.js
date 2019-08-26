@@ -267,6 +267,15 @@ class App extends React.Component {
           />
           {/*<Route path='/About' component={About} /> */}
         </Router>
+        <footer class='page-footer blue-grey darken-3'>
+          <div class='container'>
+            <div>
+              © 2019 Corey Morrison, Sam Fernandes, Gary Beaumont, & David
+              Carrano
+              <div>Icon made by Good Ware from www.flaticon.com</div>
+            </div>
+          </div>
+        </footer>
       </div>
     );
   }
