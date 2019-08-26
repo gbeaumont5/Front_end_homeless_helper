@@ -135,9 +135,10 @@ class App extends React.Component {
       <div className='App'>
         <Router className='nav'>
           <nav className='blue-grey darken-3 navigation-bar'>
-            <a className='left logo' href='/'>
+            <a className='logo left' href='/'>
               <img src='/images/tomato.png' /> GoodTomatoes
             </a>
+
             <Link to='/'>HOME | </Link>
             {this.state.isLoggedIn ? (
               <Link to='/MyAccount'>MY ACCOUNT | </Link>
