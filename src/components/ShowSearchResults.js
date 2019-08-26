@@ -35,7 +35,11 @@ class ShowSearchResults extends Component {
     this.setState({
       loading: true
     });
-    fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMBD_API}&s=${this.state.search}`)
+    fetch(
+      `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMBD_API}&s=${
+        this.state.search
+      }`
+    )
       .then(response => response.json())
       .then(data =>
         // console.log(data))
@@ -45,7 +49,6 @@ class ShowSearchResults extends Component {
             loading: false
           });
           console.log(this.state.results);
-          
         }
       );
     event.preventDefault();
@@ -86,7 +89,6 @@ class ShowSearchResults extends Component {
           <input type='submit' value='ok' className='btn' />
         </form>
         {
-      
           <div className='main-display'>
             {this.state.loading
               ? 'loading...'
@@ -122,7 +124,6 @@ class ShowSearchResults extends Component {
                   );
                 })}
           </div>
-  
         }
       </div>
     );
