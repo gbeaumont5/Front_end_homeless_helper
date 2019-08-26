@@ -45,8 +45,9 @@ class ShowReviews extends Component {
                        {this.state.reviews.map(review => {
                            return (
                            <div >
-                           {review.title} | Rating: {review.rating} of 5 <br/>
+                           <strong>{review.title}</strong>| Rating: {review.rating} of 5 <br/>
                            <p>{review.reviewNotes}</p>
+                           <p>...</p>
                            </div>
                            
                            )

@@ -74,14 +74,13 @@ class ShowMovie extends Component {
                   src={this.state.movie.Poster}
                   onError={this.addDefaultSrc}
                 />
-                <span className='card-title'>{this.state.movie.Title}</span>
               </div>
             </div>
           </div>
-          <div className='col s12 m8'>
-            <div className='card'>
-              <div className='card horizontal'>
-                <span className='card-title center'>
+          <div className='col s12 m6'>
+            <div className='card center'>
+              <div className='card horizontal blue-grey darken-3 white-text'>
+                <span className='card-title'>
                   {this.state.movie.Title}
                 </span>
               </div>
@@ -101,50 +100,35 @@ class ShowMovie extends Component {
                   {this.state.movie.imdbRating}
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class='row'>
-          <div class='col s12 m4'>
-            <div class='card blue-grey darken-1'>
-              <div class='card-content white-text'>
-                <span class='card-title'>Director</span>
-                <p>{this.state.movie.Director}</p>
+              <div className='card-action'>
+                <p>
+                 Director: {this.state.movie.Director}
+                </p>
               </div>
-            </div>
-          </div>
-          <div class='col s12 m4'>
-            <div class='card blue-grey darken-1'>
-              <div class='card-content white-text'>
-                <span class='card-title'>Actors</span>
-                <p>{this.state.movie.Actors}</p>
+              <div className='card-action'>
+                <p>
+                 Starring: {this.state.movie.Actors}
+                </p>
               </div>
-            </div>
-          </div>
-          <div class='col s12 m4'>
-            <div class='card blue-grey darken-1'>
-              <div class='card-content white-text'>
-                <span class='card-title'>Awards</span>
-                <p>{this.state.movie.Awards}</p>
+              <div className='card-action'>
+                <p> 
+                  Awards: {this.state.movie.Awards || "none"}
+                </p>
               </div>
             </div>
           </div>
         </div>
+        <h3>{this.state.movie.Title}</h3>
 
-        <h2>{this.state.movie.Title}</h2>
-
-        {this.props.isLoggedIn? 
-        <NewReview
-          movie={this.state.movie}
-          handleAddReview={this.handleAddReview}
-          userID={this.props.userID} imdbID={this.props.imdbID}
-        />
-        : 'Please log in to create a review!'}
+        {this.props.isLoggedIn ? 
+          < NewReview movie={this.state.movie} handleAddReview={this.handleAddReview} userID={this.props.userID} imdbID={this.props.imdbID} />
+          : 
+          'Please log in to create a review!'
+        }
         
         <ShowReviews imdbID={this.props.imdbID} userID={this.props.userID} />
   
-      </div>
-    );
+    </div>)
   }
 }
 
