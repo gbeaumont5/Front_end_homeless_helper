@@ -133,13 +133,16 @@ class ShowMovie extends Component {
 
         <h2>{this.state.movie.Title}</h2>
 
+        {this.props.isLoggedIn? 
         <NewReview
           imdbID={this.props.imdbID}
           handleAddReview={this.handleAddReview}
           userID={this.props.userID}
         />
-
+        : 'Please log in to create a review!'}
+        
         <ShowReviews imdbID={this.props.imdbID} userID={this.props.userID} />
+  
       </div>
     );
   }
