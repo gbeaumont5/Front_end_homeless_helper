@@ -194,7 +194,7 @@ class App extends React.Component {
             <Route
               path={`/Movies/selected/${this.state.imdbID}`}
               render={props => (
-                <ShowMovie {...props} imdbID={this.state.imdbID} />
+                <ShowMovie {...props} imdbID={this.state.imdbID} userID={this.state.userID}/>
               )}
             />
 

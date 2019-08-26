@@ -7,7 +7,7 @@ class NewReview extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      createdByID: '',
+      createdByID: this.props.userID,
       title: '',
       rating: null,
       reviewNotes: ''
@@ -16,20 +16,24 @@ class NewReview extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount(){
+    console.log(this.props.userID)
+  }
+
   handleChange(event) {
     this.setState({
-      [event.currentTarget.createdByID]: event.currentTarget.createdByID,
-      [event.currentTarget.imdbID]: event.currentTarget.imdbID,
-      [event.currentTarget.title]: event.currentTarget.title,
-      [event.currentTarget.rating]: event.currentTarget.rating,
-      [event.currentTarget.reviewNotes]: event.currentTarget.reviewNotes
+      [event.currentTarget.id]: event.currentTarget.value,
     });
   }
 
   async handleSubmit(event) {
     event.preventDefault();
-    const response = await axios.post(`${baseURL}/reviews`, {
-      createdByID: this.state.createdByID,
+    console.log('new review ID', this.state.createdByID)
+    console.log('new review imbd', this.state.imdbID)
+    console.log('new review title', this.state.title)
+    console.log('new review rating', this.state.rating)
+    const response = await axios.post(`${baseURL}/reviews/new`, {
+      createdByID: this.props.userID,
       imdbID: this.props.imdbID,
       title: this.state.title,
       rating: this.state.rating,
@@ -41,8 +45,8 @@ class NewReview extends Component {
       reviewNotes: ''
     });
     this.props.handleAddReview(response.data); 
-    window.location.reload()
-    console.log(this.state.imdbID)
+    // window.location.reload()
+    
   }
 
   render() {
@@ -53,14 +57,14 @@ class NewReview extends Component {
           <br />
           <label htmlFor='name' />
 
-          <input
+          {/* <input
             type='text'
             id='createdById'
             name='createdById'
             onChange={this.handleChange}
-            defaultValue={this.state.createdById}
+            value={this.props.userID}
             placeholder='createdById'
-          />
+          /> */}
           <input
             type='text'
             id='title'
@@ -75,10 +79,11 @@ class NewReview extends Component {
             name='rating'
             onChange={this.handleChange}
             defaultValue={this.state.rating}
-            placeholder='3'
+            placeholder='Rating'
           />
           <input
-            type='textarea'
+            type='text'
+            id='reviewNotes'
             name='reviewNotes'
             onChange={this.handleChange}
             defaultValue={this.state.reviewNotes}
