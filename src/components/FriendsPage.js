@@ -66,7 +66,7 @@ class FriendsPage extends Component {
                       src={friend.picture}
                     />
                   </div>
-                  <span class='card-title'>{friend.name}</span>
+                  <span className='card-title'>{friend.name}</span>
                   <div className='card-action'>
                     <div
                       className='btn'

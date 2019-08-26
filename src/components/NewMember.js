@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import axios from 'axios';
 const baseURL = 'http://localhost:3003';
 
@@ -9,11 +10,18 @@ class NewMember extends Component {
       name: '',
       email: '',
       password: '',
-      picture: ''
+      picture: '',
+      redirect: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    });
+  };
 
   handleChange(event) {
     this.setState({
@@ -38,7 +46,8 @@ class NewMember extends Component {
       password: '',
       picture: ''
     });
-    this.props.handleAddMember(response.data); //this is a prop coming from app.js, still need to create at App.js
+    this.props.handleAddMember(response.data);
+    this.setRedirect();
   }
 
   render() {
@@ -84,6 +93,7 @@ class NewMember extends Component {
 
           <input type='submit' class='btn' value='Add Member' />
         </form>
+        {this.state.redirect && <Redirect to='/' />};
       </div>
     );
   }
