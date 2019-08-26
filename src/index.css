@@ -12,6 +12,12 @@ code {
     monospace;
 }
 
+/* My own code */
+
+.navigation-bar {
+  color: white
+}
+
 .main-display {
   break-inside: avoid;
   column-count: 3;

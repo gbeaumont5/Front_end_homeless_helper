@@ -40,6 +40,7 @@ class App extends React.Component {
     // this.logIn = this.logIn.bind(this);
     this.handleChange=this.handleChange.bind(this)
     this.handleSubmit=this.handleSubmit.bind(this)
+    this.handleLogOut=this.handleLogOut.bind(this)
   }
   async getMembers() {
     const response = await axios(`${baseURL}/members`);
@@ -123,20 +124,31 @@ class App extends React.Component {
     window.location.reload();
   }
 
+  handleLogOut() {
+    this.setState({
+      isLoggedIn: false,
+      userID: ''
+    })
+  }
+
   render() {
     return (
       <div className='App'>
         <Router className='nav'>
           <div className='container'>
-            <nav>
+            <nav className="blue-grey darken-3 navigation-bar">
               <Link to='/'>Home | </Link>
               {this.state.isLoggedIn ?  
                 <Link to='/MyAccount'>MyAccount | </Link> 
               :
                 <Link to='/NewMember'>Register | </Link>}
               <Link to='/Friends'>Members    </Link>
-                             {/* Modal Trigger */} 
-              <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Login</a>
+              {/* Modal Trigger */} 
+
+              {this.state.isLoggedIn? 
+                <button className="btn" onClick={this.handleLogOut}>Logout</button>
+                :
+                <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Login</a>}
             </nav>
             <Route path='/' exact component={LandingPage} />
           

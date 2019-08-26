@@ -41,18 +41,18 @@ class FriendsPage extends Component {
   render() {
     return (
       <div>
-        <h3>My Friends</h3>
+        <h3>Members</h3>
         <div className='row'>
           {this.state.friends.map(friend => {
             return (
               <div className='col s12 m4'>
-                <div className='card'>
+                <div className='card small'>
                   <div
                     onClick={() => this.getFriendProfile(friend)}
                     className='card-image'
                     key={friend._id}
                   >
-                    <img alt='profile picture' src={friend.picture} />
+                    <img alt='profile picture' className="circle" src={friend.picture} />
                   </div>
                   <div class='card-content'>{friend.name}</div>
                   <div className='card-action'>
