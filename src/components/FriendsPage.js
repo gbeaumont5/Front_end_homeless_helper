@@ -81,6 +81,10 @@ class FriendsPage extends Component {
             );
           })}
         </div>
+
+
+        <FriendProfile friend={this.state.friend} userID={this.state.friend._id}/>
+
         {this.state.showFriend && (
           <FriendProfile
             friend={this.state.friend}
@@ -88,6 +92,7 @@ class FriendsPage extends Component {
             hideFriend={this.hideFriend}
           />
         )}
+
       </div>
     );
   }

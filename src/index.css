@@ -27,11 +27,25 @@ code {
   overflow: visible;
 }
 
+.user-pix {
+  width: 20%
+}
+
 .review-textarea {
   width: 100%;
   height: 150px;
   margin-bottom: 2%
 }
 
+.review-text {
+  width: 100%;
+  text-align: justify;
+  margin-right: 2%
+}
+
+.review-pix {
+  width: 80px;
+  margin-right: 2%
+}
 
 

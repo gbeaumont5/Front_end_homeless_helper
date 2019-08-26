@@ -41,14 +41,17 @@ class ShowReviews extends Component {
         return (
             <div>
                 <h3>Reviews</h3>
-                    <ul>
+                    <div className="container">
                        {this.state.reviews.map(review => {
                            return (
-                           <li>{review.title} | Rating: {review.rating} of 5 <br/>
-                           {review.reviewNotes}</li>
+                           <div >
+                           {review.title} | Rating: {review.rating} of 5 <br/>
+                           <p>{review.reviewNotes}</p>
+                           </div>
+                           
                            )
                        })}
-                    </ul>
+                    </div>
 
             </div>
         )
