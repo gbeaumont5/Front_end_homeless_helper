@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
 let baseURL = 'http://localhost:3003';
 
@@ -14,39 +14,34 @@ class NewReview extends Component {
       reviewNotes: '',
       redirect: false,
       rerouteLink: '/movies/'
-
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount(){
-    console.log(this.props.userID)
+  componentDidMount() {
+    console.log(this.props.userID);
   }
 
   handleChange(event) {
     this.setState({
-
-      [event.currentTarget.id]: event.currentTarget.value,
-
+      [event.currentTarget.id]: event.currentTarget.value
     });
   }
 
   setRedirect = () => {
     this.setState({
       redirect: true
-    })
-  }
-
-  
+    });
+  };
 
   async handleSubmit(event) {
     event.preventDefault();
 
-    console.log('new review ID', this.state.createdByID)
-    console.log('new review imbd', this.state.imdbID)
-    console.log('new review title', this.state.title)
-    console.log('new review rating', this.state.rating)
+    console.log('new review ID', this.state.createdByID);
+    console.log('new review imbd', this.state.imdbID);
+    console.log('new review title', this.state.title);
+    console.log('new review rating', this.state.rating);
     const response = await axios.post(`${baseURL}/reviews/new`, {
       createdByID: this.props.userID,
       imdbID: this.props.movie.imdbID,
@@ -61,14 +56,14 @@ class NewReview extends Component {
       title: '',
       reviewNotes: ''
     });
-    this.props.handleAddReview(response.data); 
+    this.props.handleAddReview(response.data);
     this.setRedirect();
-    console.log(this.props.imdbID)
+    console.log(this.props.imdbID);
   }
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <form onSubmit={this.handleSubmit} className='input-field'>
           <br />
           <br />
@@ -89,7 +84,6 @@ class NewReview extends Component {
             onChange={this.handleChange}
             defaultValue={this.state.rating}
             placeholder='Rating'
-
           />
           <input
             type='text'
@@ -97,13 +91,12 @@ class NewReview extends Component {
             name='reviewNotes'
             onChange={this.handleChange}
             defaultValue={this.state.reviewNotes}
-            className="review-textarea"
+            className='review-textarea'
             placeholder='Write your review here'
           />
           <br />
 
           <input type='submit' className='btn' value='Submit Review' />
-          
         </form>
         {this.state.redirect && <Redirect to={`/`} />}
       </div>
