@@ -32,7 +32,10 @@ class FriendProfile extends Component {
 
   render() {
     return (
+    
       <div className='container'>
+      { this.props.userID ?
+        <div>
         <div className='row'>
           <div className='col s12 m6 center'>
             <div className='card'>
@@ -57,17 +60,21 @@ class FriendProfile extends Component {
           {this.state.userReviews.map(review => {
            return (
              <div key={review._id}>
-             <img className="review-pix-friends left circle" src={review.poster} alt={review.movieTitle} />
-             <br />
-             <h6><strong>{review.movieTitle}</strong></h6>
-             <br/>
-             <h6 className="left">{review.title} | <span>{review.rating} of 5</span></h6>
-             <br/>
-             <p className="review-text">{review.reviewNotes}</p>
-             <hr/>
+              <img className="review-pix-friends left circle" src={review.poster} alt={review.movieTitle} />
+                <br />
+              <h6><strong>{review.movieTitle}</strong></h6>
+                <br/>
+              <h6 className="left">{review.title} | <span>{review.rating} of 5</span></h6>
+                <br/>
+              <p className="review-text">{review.reviewNotes}</p>
+                <hr/>
              </div>
             )})}
         </div>
+        </div>
+        :
+          <p>Pick a Friend to see their reviews!</p>
+        }
       </div>
     )
   }
