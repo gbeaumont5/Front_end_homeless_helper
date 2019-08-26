@@ -70,7 +70,7 @@ class FriendsPage extends Component {
           })}
         </div>
 
-        <FriendProfile friend={this.state.friend} />
+        <FriendProfile friend={this.state.friend} userID={this.state.friend._id}/>
       </div>
     );
   }

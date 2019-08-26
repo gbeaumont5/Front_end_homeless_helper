@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
-import Reviews from './Reviews';
+
 
 const baseURL = 'http://localhost:3003';
 
@@ -9,8 +9,25 @@ class FriendProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      friends: []
+      friends: [],
+      userReviews: []
     };
+    this.getUserReviews=this.getUserReviews.bind(this)
+  }
+
+  async getUserReviews() {
+    const response = await axios(
+      `${baseURL}/reviews/byUser/${this.props.userID}`
+    );
+    const data = response.data;
+    this.setState({
+      userReviews: data
+    });
+    console.log('and the user reviews array is:', this.state.userReviews);
+  }
+
+  componentDidUpdate() {
+    this.getUserReviews()
   }
 
   render() {
@@ -24,8 +41,19 @@ class FriendProfile extends Component {
             </div>
           </div>
         </div>
+        <div className='col s12 m6 center'>
+          {this.state.userReviews.map(review => {
+           return (
+             <div key={review._id}>
+             <img className="review-pix left" src={review.poster} alt={review.movieTitle} />
+             <h6><strong>{review.movieTitle}</strong></h6>
+             <h6 className="left">{review.title} | <span>{review.rating} of 5</span></h6>
+             <p className="review-text">{review.reviewNotes}</p>
+             </div>
+            )})}
+        </div>
       </div>
-    );
+    )
   }
 }
 

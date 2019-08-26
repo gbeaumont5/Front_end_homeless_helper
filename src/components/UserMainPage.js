@@ -118,11 +118,14 @@ class UserMainPage extends Component {
           )}
 
         <h4>My Reviews:</h4>
+        <br/>
 
         {this.state.userReviews.map(review => {
           return (
             <div>
-              <h6>
+              <img className="review-pix left" src={review.poster} alt={review.movieTitle} />
+              <h6><strong>{review.movieTitle}</strong></h6>
+              <h6 className="left">
                 {review.title} | <span>{review.rating}</span>
               </h6>
               <blockquote>
@@ -130,7 +133,7 @@ class UserMainPage extends Component {
                 <em>A review by: </em>
                 {this.state.currentUser.name}
               </blockquote>
-              <p>{review.reviewNotes}</p>
+              <p className="review-text">{review.reviewNotes}</p>
               <hr />
             </div>
           );

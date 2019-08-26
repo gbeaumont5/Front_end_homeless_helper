@@ -63,14 +63,6 @@ class NewReview extends Component {
           <br />
           <label htmlFor='name' />
 
-          {/* <input
-            type='text'
-            id='createdById'
-            name='createdById'
-            onChange={this.handleChange}
-            value={this.props.userID}
-            placeholder='createdById'
-          /> */}
           <input
             type='text'
             id='title'
