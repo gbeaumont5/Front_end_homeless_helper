@@ -80,39 +80,48 @@ class ShowSearchResults extends Component {
         </form>
         {
           <div className='main-display'>
-            {this.state.loading
-              ? 'loading...'
-              : this.state.results.map(result => {
-                  return (
-                    <div className='col s12 m6 l4 ' key={result.imdbID}>
-                      <a
-                        onClick={() => {
-                          this.props.handleClick(result.imdbID);
-                          this.props.history.push(
-                            `/movies/selected/${result.imdbID}`
-                          );
-                        }}
-                      >
-                        {' '}
-                        <div className='card'>
-                          <div className='card-image'>
-                            <img
-                              src={result.Poster}
-                              alt={result.Title}
-                              onError={this.addDefaultSrc}
-                            />
-                          </div>
-                          <div className='card-content center-align'>
-                            <h4 className='card-title'>{result.Title}</h4>
-                            <p>
-                              {result.Type} release year: {result.Year}
-                            </p>
-                          </div>
+            {this.state.loading ? (
+              <h1>
+                Loading
+                <span>
+                  <img src='/images/tomato_2.png' />
+                  <img src='/images/tomato_2.png' />
+                  <img src='/images/tomato_2.png' />
+                </span>
+              </h1>
+            ) : (
+              this.state.results.map(result => {
+                return (
+                  <div className='col s12 m6 l4 ' key={result.imdbID}>
+                    <a
+                      onClick={() => {
+                        this.props.handleClick(result.imdbID);
+                        this.props.history.push(
+                          `/movies/selected/${result.imdbID}`
+                        );
+                      }}
+                    >
+                      {' '}
+                      <div className='card'>
+                        <div className='card-image'>
+                          <img
+                            src={result.Poster}
+                            alt={result.Title}
+                            onError={this.addDefaultSrc}
+                          />
                         </div>
-                      </a>
-                    </div>
-                  );
-                })}
+                        <div className='card-content center-align'>
+                          <h4 className='card-title'>{result.Title}</h4>
+                          <p>
+                            {result.Type} release year: {result.Year}
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                );
+              })
+            )}
           </div>
         }
       </div>
