@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom'
 
 let baseURL = 'http://localhost:3003';
 
@@ -18,8 +19,6 @@ class NewReview extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.currentTarget.createdByID]: event.currentTarget.createdByID,
-      [event.currentTarget.imdbID]: event.currentTarget.imdbID,
       [event.currentTarget.title]: event.currentTarget.title,
       [event.currentTarget.rating]: event.currentTarget.rating,
       [event.currentTarget.reviewNotes]: event.currentTarget.reviewNotes
@@ -29,14 +28,16 @@ class NewReview extends Component {
   async handleSubmit(event) {
     event.preventDefault();
     const response = await axios.post(`${baseURL}/reviews`, {
-      createdByID: this.state.createdByID,
-      imdbID: this.props.imdbID,
+      createdByID: this.props.userID,
+      imdbID: this.props.movie.imdbID,
+      poster: this.props.movie.Poster,
+      movieTitle: this.props.movie.Title,
       title: this.state.title,
       rating: this.state.rating,
       reviewNotes: this.state.reviewNotes
     });
     this.setState({
-      imdbID: this.props.imdbID,
+      imdbID: this.props.movie.imdbID,
       title: '',
       reviewNotes: ''
     });
@@ -55,14 +56,6 @@ class NewReview extends Component {
 
           <input
             type='text'
-            id='createdById'
-            name='createdById'
-            onChange={this.handleChange}
-            defaultValue={this.state.createdById}
-            placeholder='createdById'
-          />
-          <input
-            type='text'
             id='title'
             name='title'
             onChange={this.handleChange}
@@ -75,13 +68,14 @@ class NewReview extends Component {
             name='rating'
             onChange={this.handleChange}
             defaultValue={this.state.rating}
-            placeholder='3'
+            placeholder='1'
           />
           <input
             type='textarea'
             name='reviewNotes'
             onChange={this.handleChange}
             defaultValue={this.state.reviewNotes}
+            className="review-textarea"
             placeholder='Write your review here'
           />
           <br />

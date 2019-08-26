@@ -13,7 +13,7 @@ class ShowMovie extends Component {
       reviews: []
     };
     this.handleAddReview = this.handleAddReview.bind(this);
-    console.log('this.props.imdbID: ', +this.state.imdbID);
+    console.log('this.props.imdbID: ', this.state.imdbID);
     this.addDefaultSrc = this.addDefaultSrc.bind(this);
   }
 
@@ -130,7 +130,7 @@ class ShowMovie extends Component {
         <h2>{this.state.movie.Title}</h2>
 
         <NewReview
-          imdbID={this.props.imdbID}
+          movie={this.state.movie}
           handleAddReview={this.handleAddReview}
         />
 

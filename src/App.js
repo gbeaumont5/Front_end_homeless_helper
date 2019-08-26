@@ -16,7 +16,7 @@ let baseURL = process.env.REACT_APP_BASEURL;
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003';
 } else {
-  baseURL = 'https://fathomless-sierra-68956.herokuapp.com';
+  baseURL = 'https://dashboard.heroku.com/apps/goodtomatoes';
 }
 
 require('dotenv').config();
@@ -37,7 +37,6 @@ class App extends React.Component {
     this.getMembers = this.getMembers.bind(this);
     this.handleAddMember = this.handleAddMember.bind(this);
     this.deleteMember = this.deleteMember.bind(this);
-    // this.logIn = this.logIn.bind(this);
     this.handleChange=this.handleChange.bind(this)
     this.handleSubmit=this.handleSubmit.bind(this)
     this.handleLogOut=this.handleLogOut.bind(this)
@@ -53,6 +52,7 @@ class App extends React.Component {
     console.log(this.state.members);
   }
 
+  //this handle Change function works alongside the handleSubmit for the log in functionality
   handleChange(event) {
     this.setState({
       [event.currentTarget.name]: event.currentTarget.value
@@ -95,7 +95,8 @@ class App extends React.Component {
       
     }
 
-  handleAddMember(member) {
+    //this gets passed on to the NewMember component, which is rendered with the path /Register
+    handleAddMember(member) {
     const copyMembers = [...this.state.members, member];
     this.setState({
       members: copyMembers
@@ -206,7 +207,7 @@ class App extends React.Component {
             <Route
               path={`/Movies/selected/${this.state.imdbID}`}
               render={props => (
-                <ShowMovie {...props} imdbID={this.state.imdbID} />
+                <ShowMovie {...props} imdbID={this.state.imdbID} userID={this.state.userID}/>
               )}
             />
 
