@@ -38,7 +38,9 @@ class NewReview extends Component {
     console.log('new review rating', this.state.rating)
     const response = await axios.post(`${baseURL}/reviews/new`, {
       createdByID: this.props.userID,
-      imdbID: this.props.imdbID,
+      imdbID: this.props.movie.imdbID,
+      movieTitle: this.props.movie.Title,
+      poster: this.props.movie.Poster,
       title: this.state.title,
       rating: this.state.rating,
       reviewNotes: this.state.reviewNotes
