@@ -58,3 +58,11 @@ HTML, CSS, Materialize, Javascript, Express, React, MongoDB, Mongoose, Node.js
 * David Carrano
 * Gary Beaumont
 * Samantha Fernandes
+
+# Code Repository
+
+#### Backend
+* https://github.com/samdfernandes/goodtomatoes-backend
+
+#### Frontend
+* https://github.com/gbeaumont5/front_end_good_tomatoes
