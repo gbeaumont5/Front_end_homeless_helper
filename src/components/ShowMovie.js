@@ -8,7 +8,6 @@ let apiURL = `http://www.omdbapi.com/?apikey=${
 }&i=`;
 
 let baseURL = process.env.REACT_APP_BASEURL;
-let apiURL = `http://www.omdbapi.com/?apikey=${baseURL}=`;
 
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003';
