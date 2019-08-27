@@ -3,7 +3,9 @@ import axios from 'axios';
 import NewReview from './NewReview';
 import ShowReviews from './ShowReview';
 
-let apiURL = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMBD_API}&i=`;
+let apiURL = `http://www.omdbapi.com/?apikey=${
+  process.env.REACT_APP_OMBD_API
+}&i=`;
 
 let baseURL = process.env.REACT_APP_BASEURL;
 

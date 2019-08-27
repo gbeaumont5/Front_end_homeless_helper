@@ -21,6 +21,7 @@ class FriendsPage extends Component {
     };
     this.getFriendProfile = this.getFriendProfile.bind(this);
     this.hideFriend = this.hideFriend.bind(this);
+    this.addDefaultSrc = this.addDefaultSrc.bind(this);
   }
 
   componentDidMount() {
@@ -51,6 +52,11 @@ class FriendsPage extends Component {
     });
   }
 
+  addDefaultSrc(event) {
+    event.target.src =
+      'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+  }
+
   render() {
     return (
       <div className='container'>
@@ -61,42 +67,43 @@ class FriendsPage extends Component {
               <div className='col s12 m4'>
                 <div className='card small'>
                   <div
-                  onClick={() => this.getFriendProfile(friend)}
-                  className='card-image'
-                  key={friend._id}
+                    onClick={() => this.getFriendProfile(friend)}
+                    className='card-image'
+                    key={friend._id}
                   >
-                  <img
-                    alt='profile picture'
-                    className='circle'
-                    src={friend.picture}
-                  />
+                    <img
+                      alt='profile picture'
+                      className='circle'
+                      src={friend.picture}
+                      onError={this.addDefaultSrc}
+                    />
                   </div>
                   <span className='card-title'>{friend.name}</span>
-                <div className='card-action'>
-                  <div
-                    className='btn'
-                    onClick={() => this.props.deleteMember(friend._id)}
-                  >
-                    {' '}
-                    Delete
+                  <div className='card-action'>
+                    <div
+                      className='btn'
+                      onClick={() => this.props.deleteMember(friend._id)}
+                    >
+                      {' '}
+                      Delete
+                    </div>
                   </div>
                 </div>
-                </div>
-                
               </div>
             );
-        })}
-        <hr />
-        
-         <FriendProfile
-         friend={this.state.friend}
-         showFriend={this.state.showFriend}
-         hideFriend={this.hideFriend}
-          userID={this.state.friend._id} />
+          })}
+          <hr />
+
+          <FriendProfile
+            friend={this.state.friend}
+            showFriend={this.state.showFriend}
+            hideFriend={this.hideFriend}
+            userID={this.state.friend._id}
+          />
+        </div>
       </div>
-    </div>
-    )
+    );
   }
 }
 
-export default FriendsPage
+export default FriendsPage;
