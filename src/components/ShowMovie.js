@@ -3,9 +3,10 @@ import axios from 'axios';
 import NewReview from './NewReview';
 import ShowReviews from './ShowReview';
 
-let apiURL = 'http://www.omdbapi.com/?apikey=b01d6b33&i=';
+require('dotenv').config();
 
 let baseURL = process.env.REACT_APP_BASEURL;
+let apiURL = `http://www.omdbapi.com/?apikey=${baseURL}=`;
 
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003';
