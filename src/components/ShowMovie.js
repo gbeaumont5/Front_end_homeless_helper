@@ -3,7 +3,9 @@ import axios from 'axios';
 import NewReview from './NewReview';
 import ShowReviews from './ShowReview';
 
-require('dotenv').config();
+let apiURL = `http://www.omdbapi.com/?apikey=${
+  process.env.REACT_APP_OMBD_API
+}&i=`;
 
 let baseURL = process.env.REACT_APP_BASEURL;
 let apiURL = `http://www.omdbapi.com/?apikey=${baseURL}=`;
@@ -44,7 +46,7 @@ class ShowMovie extends Component {
   }
 
   async getMovie() {
-    const response = await axios(`${baseURL}${this.props.imdbID}`);
+    const response = await axios(`${apiURL}${this.props.imdbID}`);
     console.log('response: ', response);
     const data = response.data;
     console.log('base url: ', `${apiURL}${this.props.imdbID}`);
