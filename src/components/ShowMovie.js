@@ -3,7 +3,9 @@ import axios from 'axios';
 import NewReview from './NewReview';
 import ShowReviews from './ShowReview';
 
-let apiURL = 'http://www.omdbapi.com/?apikey=b01d6b33&i=';
+let apiURL = `http://www.omdbapi.com/?apikey=${
+  process.env.REACT_APP_OMBD_API
+}&i=`;
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -30,8 +32,8 @@ class ShowMovie extends Component {
     this.getMovie();
     this.setState({
       userID: this.props.userID
-  })
-}
+    });
+  }
 
   async getReviews() {
     const response = await axios(`${baseURL}/reviews`);
@@ -43,7 +45,7 @@ class ShowMovie extends Component {
   }
 
   async getMovie() {
-    const response = await axios(`${baseURL}${this.props.imdbID}`);
+    const response = await axios(`${apiURL}${this.props.imdbID}`);
     console.log('response: ', response);
     const data = response.data;
     console.log('base url: ', `${apiURL}${this.props.imdbID}`);
@@ -88,9 +90,7 @@ class ShowMovie extends Component {
           <div className='col s12 m6'>
             <div className='card center'>
               <div className='card horizontal blue-grey darken-3 white-text'>
-                <span className='card-title'>
-                  {this.state.movie.Title}
-                </span>
+                <span className='card-title'>{this.state.movie.Title}</span>
               </div>
               <div className='card-content'>
                 <p>{this.state.movie.Plot}</p>
@@ -109,34 +109,33 @@ class ShowMovie extends Component {
                 </p>
               </div>
               <div className='card-action'>
-                <p>
-                 Director: {this.state.movie.Director}
-                </p>
+                <p>Director: {this.state.movie.Director}</p>
               </div>
               <div className='card-action'>
-                <p>
-                 Starring: {this.state.movie.Actors}
-                </p>
+                <p>Starring: {this.state.movie.Actors}</p>
               </div>
               <div className='card-action'>
-                <p> 
-                  Awards: {this.state.movie.Awards || "none"}
-                </p>
+                <p>Awards: {this.state.movie.Awards || 'none'}</p>
               </div>
             </div>
           </div>
         </div>
         <h3>{this.state.movie.Title}</h3>
 
-        {this.props.isLoggedIn ? 
-          <NewReview movie={this.state.movie} handleAddReview={this.handleAddReview} userID={this.props.userID} imdbID={this.props.imdbID} />
-          : 
+        {this.props.isLoggedIn ? (
+          <NewReview
+            movie={this.state.movie}
+            handleAddReview={this.handleAddReview}
+            userID={this.props.userID}
+            imdbID={this.props.imdbID}
+          />
+        ) : (
           'Please log in to create a review!'
-        }
-        
+        )}
+
         <ShowReviews imdbID={this.props.imdbID} userID={this.props.userID} />
-  
-    </div>)
+      </div>
+    );
   }
 }
 

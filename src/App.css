@@ -3,6 +3,7 @@
 .App {
   text-align: center;
   font-family: 'Lato', sans-serif;
+  padding-bottom: 40px;
 }
 
 .App-logo {
@@ -53,4 +54,8 @@ footer {
   width: 100%;
   color: white;
   text-align: center;
+}
+
+.container {
+  margin: 5px, 0, 20px, 0;
 }

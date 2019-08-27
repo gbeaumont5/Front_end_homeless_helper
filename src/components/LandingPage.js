@@ -13,7 +13,11 @@ class LandingPage extends Component {
     return (
       <div>
         <h1>
-          GoodTomat
+          G
+          <span>
+            <img src='images/eyeglasses.png' />
+          </span>
+          dTomat
           <span>
             <img src='/images/tomato_2.png' />
           </span>
