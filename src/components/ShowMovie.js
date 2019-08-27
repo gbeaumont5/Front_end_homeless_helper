@@ -10,7 +10,7 @@ let baseURL = process.env.REACT_APP_BASEURL;
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003';
 } else {
-  baseURL = 'https://dashboard.heroku.com/apps/goodtomatoes';
+  baseURL = 'http://goodtomatoes-backend.herokuapp.com/';
 }
 
 class ShowMovie extends Component {
@@ -129,7 +129,7 @@ class ShowMovie extends Component {
         <h3>{this.state.movie.Title}</h3>
 
         {this.props.isLoggedIn ? 
-          < NewReview movie={this.state.movie} handleAddReview={this.handleAddReview} userID={this.props.userID} imdbID={this.props.imdbID} />
+          <NewReview movie={this.state.movie} handleAddReview={this.handleAddReview} userID={this.props.userID} imdbID={this.props.imdbID} />
           : 
           'Please log in to create a review!'
         }
