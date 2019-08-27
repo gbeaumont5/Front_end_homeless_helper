@@ -54,3 +54,7 @@ footer {
   color: white;
   text-align: center;
 }
+
+.container {
+  margin: 5px, 0, 20px, 0;
+}

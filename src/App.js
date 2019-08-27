@@ -273,7 +273,9 @@ class App extends React.Component {
               © 2019 Corey Morrison, Sam Fernandes, Gary Beaumont, & David
               Carrano
               <div>
-                <em>Icon made by Good Ware from www.flaticon.com</em>
+                <em>
+                  Icons made by Good Ware and Smashicons from www.flaticon.com
+                </em>
               </div>
             </div>
           </div>
