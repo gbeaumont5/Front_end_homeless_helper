@@ -6,7 +6,7 @@ let baseURL = process.env.REACT_APP_BASEURL;
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003';
 } else {
-  baseURL = 'https://dashboard.heroku.com/apps/goodtomatoes';
+  baseURL = 'http://goodtomatoes-backend.herokuapp.com/';
 }
 class ShowReviews extends Component {
     constructor(props) {

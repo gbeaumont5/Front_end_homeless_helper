@@ -7,7 +7,7 @@ let baseURL = process.env.REACT_APP_BASEURL;
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003';
 } else {
-  baseURL = 'https://dashboard.heroku.com/apps/goodtomatoes';
+  baseURL = 'http://goodtomatoes-backend.herokuapp.com/';
 }
 
 class FriendProfile extends Component {
@@ -15,10 +15,18 @@ class FriendProfile extends Component {
     super(props);
     this.state = {
       friends: [],
-      userReviews: []
+      userReviews: [],
+      showFriend: false
     };
     this.getUserReviews = this.getUserReviews.bind(this);
     this.addDefaultSrc = this.addDefaultSrc.bind(this);
+    this.hideFriend = this.hideFriend.bind(this);
+  }
+
+  hideFriend() {
+    this.setState({
+      showFriend: false
+    });
   }
 
   async getUserReviews() {
@@ -59,9 +67,9 @@ class FriendProfile extends Component {
                     <div className='card-action'>
                       <button
                         className='btn show-friend'
-                        onClick={() => {
-                          this.props.hideFriend();
-                        }}
+                        onClick={
+                          this.state.hideFriend
+                        }
                       >
                         Hide Friend
                       </button>
