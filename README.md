@@ -6,7 +6,7 @@ A movie and TV show review website, Good Tomatoes allows users to find new movie
 
 http://good_tomatoes.surge.sh/
 
-## Screenshots
+## Screenshots:
 
 ![Homepage Screenshot](https://github.com/gbeaumont5/front_end_good_tomatoes/blob/master/public/images/app%20screenshots/GoodTomato_Homepage.png?raw=true)
 
@@ -14,7 +14,7 @@ http://good_tomatoes.surge.sh/
 
 ![Show page Screenshot](https://github.com/gbeaumont5/front_end_good_tomatoes/blob/master/public/images/app%20screenshots/GoodTomato_showpage.png?raw=true)
 
-## Wireframes 
+## Wireframes: 
 
 #### Home Page
 ![wireframing Main Page](https://github.com/samdfernandes/goodtomatoes-backend/blob/master/images/Screen%20Shot%202019-08-21%20at%2012.39.13%20PM.png)
@@ -39,14 +39,14 @@ http://good_tomatoes.surge.sh/
 
 HTML, CSS, Materialize, Javascript, Express, React, MongoDB, Mongoose, Node.js 
 
-## Future Improvements
+## Future Improvements:
 
 * Full login user authentication and sessions
 * The ability to search and add new friends
 * Updating and deleting reviews
 
 
-## Credits
+## Credits:
 
 * https://reactjs.org/docs/
 * http://www.omdbapi.com/
