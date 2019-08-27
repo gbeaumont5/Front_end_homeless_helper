@@ -8,7 +8,9 @@ http://good_tomatoes.surge.sh/
 
 ## Screenshots
 
-![This Link](URL)
+![This Link](https://github.com/gbeaumont5/front_end_good_tomatoes/blob/master/Images/GoodTomato_Homepage.png?raw=true)
+
+![This Link](https://github.com/gbeaumont5/front_end_good_tomatoes/blob/master/Images/GoodTomato_Search.png?raw=true)
 
 ## Wireframes 
 
@@ -18,14 +20,21 @@ HTML, CSS, Materialize, Javascript, Express, React, MongoDB, Mongoose, Node.js
 
 ## Future Improvements
 
+* Full login user authentication and sessions
+* The ability to search and add new friends
+* Updating and deleting reviews
 * 
 
 ## Credits
 
 * https://reactjs.org/docs/
-* 
+* http://www.omdbapi.com/
+
 
 
 ## Engineered by:
 
-* 
+* Corey Morrison
+* David Carrano
+* Gary Beaumont
+* Samantha Fernandes
