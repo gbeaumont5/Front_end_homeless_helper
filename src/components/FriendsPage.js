@@ -8,7 +8,7 @@ let baseURL = process.env.REACT_APP_BASEURL;
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003';
 } else {
-  baseURL = 'http://goodtomatoes-backend.herokuapp.com/';
+  baseURL = 'http://goodtomatoes-backend.herokuapp.com';
 }
 class FriendsPage extends Component {
   constructor(props) {
